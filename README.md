@@ -6,3 +6,7 @@ You are allowed to fork this project (qSumo) if given credit to the original aut
 For more information, see LICENSE.md
 
 
+## Contributing
+Pull requests, please keep this thing in mind when contributing:
+
+- Take a look at open issues first before you get too far in -- someone might already be working on what you were planning on doing
