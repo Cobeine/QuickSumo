@@ -24,15 +24,20 @@
  */
 package me.cobeine.qSumo.utils;
 
-
-import org.bukkit.plugin.PluginManager;
+import me.cobeine.qSumo.utils.Interfaces.ICommand;
+import me.cobeine.qSumo.utils.Interfaces.IListener;
+import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public abstract class SpigotPlugin extends JavaPlugin {
     public void onEnable() {
+        log(
+                "Starting " + getDescription().getName() +
+                        " Version v" + getDescription().getVersion() +
+                        " By " + getDescription().getAuthors().get(0));
         init();
         registerCommands();
-        registerListeners(getServer().getPluginManager());
+        registerListeners();
     }
 
     public void onDisable() {
@@ -43,12 +48,23 @@ public abstract class SpigotPlugin extends JavaPlugin {
 
     protected abstract void registerCommands();
 
-    protected abstract void registerListeners(PluginManager pluginManager);
+    public void registerCommand(String command, ICommand clazz) {
+        Bukkit.getPluginCommand(command).setExecutor(clazz);
+
+    }
+
+    protected abstract void registerListeners();
+
+    public void registerListeners(IListener<?>... listeners) {
+        for (IListener<?> listener : listeners) {
+            Bukkit.getPluginManager().registerEvents(listener,this);
+        }
+    }
 
     protected abstract void shutdown();
 
     public static void log(String info) {
-
+        Bukkit.getServer().getLogger().info(info);
     }
 
 }

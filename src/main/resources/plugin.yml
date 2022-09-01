@@ -1,4 +1,11 @@
-name: qSumo
+name: QuickSumo
 author: Cobeine
 version: 0.1-INDEV
 main: me.Cobeine.qSumo.Core
+website: "https://github.com/Cobeine/"
+
+commands:
+  QuickSumo:
+    aliases: [qSumo,qs]
+    permission: QuickSumo.Setup
+    description: "Setup command for QuickSumo"
