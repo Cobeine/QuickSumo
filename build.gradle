@@ -1,0 +1,23 @@
+plugins {
+    id 'java'
+}
+
+group 'me.Cobeine'
+version '0.1-INDEV'
+
+repositories {
+    mavenCentral()
+    maven {
+        url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/'
+    }
+}
+
+dependencies {
+    implementation 'org.projectlombok:lombok:1.18.24'
+    compileOnly("org.spigotmc:spigot-api:1.8.8-R0.1-SNAPSHOT")
+
+}
+
+test {
+    useJUnitPlatform()
+}
