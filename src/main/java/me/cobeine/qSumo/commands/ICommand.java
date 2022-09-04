@@ -22,13 +22,15 @@
  * SOFTWARE. YOU ARE NOT ALLOWED TO RE-DUSRIBUTE AND/OR REPUBLISH. YOU ARE NOT ALLOWED TO FORK
  * UNLESS GIVEN CREDIT TO THE ORIGINAL AUTHOR (COBEINE)
  */
-package me.cobeine.qSumo.utils.Interfaces;
+package me.cobeine.qSumo.commands;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Method;
 import java.util.Arrays;
 
 public interface ICommand extends CommandExecutor {
@@ -55,6 +57,25 @@ public interface ICommand extends CommandExecutor {
     }
 
     void execute(Player player, String subCommand, String[] args);
+
+    default boolean executeSubCommand(Object clazz, String subCommand, Player executor,String[] args) {
+        for (final Method method : clazz.getClass().getDeclaredMethods())
+
+
+            if (method.isAnnotationPresent(ISubCommand.class)) {
+
+                ISubCommand annotation = method.getAnnotation(ISubCommand.class);
+                String targetedSub = annotation.value();
+
+
+                if (targetedSub.equalsIgnoreCase(subCommand))
+                    try {method.invoke(clazz, executor, args);
+                        return true;} catch (Exception ignored) {}
+
+
+            }
+        return false;
+    }
 
     default String[] cleanArgs(String[] args) {
         return Arrays.copyOfRange(args, 1, args.length);

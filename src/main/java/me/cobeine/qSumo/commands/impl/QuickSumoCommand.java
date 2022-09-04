@@ -22,10 +22,11 @@
  * SOFTWARE. YOU ARE NOT ALLOWED TO RE-DUSRIBUTE AND/OR REPUBLISH. YOU ARE NOT ALLOWED TO FORK
  * UNLESS GIVEN CREDIT TO THE ORIGINAL AUTHOR (COBEINE)
  */
-package me.cobeine.qSumo.Commands;
+package me.cobeine.qSumo.commands.impl;
 
 
-import me.cobeine.qSumo.utils.Interfaces.ICommand;
+import me.cobeine.qSumo.commands.ICommand;
+import me.cobeine.qSumo.commands.ISubCommand;
 import org.bukkit.entity.Player;
 
 public class QuickSumoCommand implements ICommand {
@@ -33,6 +34,14 @@ public class QuickSumoCommand implements ICommand {
 
     @Override
     public void execute(Player player, String subCommand, String[] args) {
-
+        if (subCommand == null || subCommand.equalsIgnoreCase("help")) {
+            //todo help
+            return;
+        }
+        if (!executeSubCommand(SubCommands.class, subCommand,player,args))
+            player.sendMessage("Invalid subcommand");
     }
+
+
+
 }

@@ -1,18 +1,18 @@
 /**
  * MIT License
- *
+ * <p>
  * Copyright (c) 2022 Cobeine
- *
+ * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * <p>
  * The above copyright notice and this permission notice shall be included in all
  * copies or substantial portions of the Software.
- *
+ * <p>
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -22,49 +22,15 @@
  * SOFTWARE. YOU ARE NOT ALLOWED TO RE-DISTRIBUTE AND/OR REPUBLISH. YOU ARE NOT ALLOWED TO FORK
  * UNLESS GIVEN CREDIT TO THE ORIGINAL AUTHOR (COBEINE)
  */
-package me.cobeine.qSumo.utils;
+package me.cobeine.qSumo.commands.impl;
 
-import me.cobeine.qSumo.commands.ICommand;
-import me.cobeine.qSumo.utils.Interfaces.IListener;
-import org.bukkit.Bukkit;
-import org.bukkit.plugin.java.JavaPlugin;
+import me.cobeine.qSumo.commands.ISubCommand;
+import org.bukkit.entity.Player;
 
-public abstract class SpigotPlugin extends JavaPlugin {
-    public void onEnable() {
-        log(
-                "Starting " + getDescription().getName() +
-                        " Version v" + getDescription().getVersion() +
-                        " By " + getDescription().getAuthors().get(0));
-        init();
-        registerCommands();
-        registerListeners();
-    }
+public final class SubCommands {
 
-    public void onDisable() {
-        shutdown();
-    }
-
-    protected abstract void init();
-
-    protected abstract void registerCommands();
-
-    public void registerCommand(String command, ICommand clazz) {
-        Bukkit.getPluginCommand(command).setExecutor(clazz);
+    @ISubCommand("test")
+    public void test(Player player, String[] args) {
 
     }
-
-    protected abstract void registerListeners();
-
-    public void registerListeners(IListener<?>... listeners) {
-        for (IListener<?> listener : listeners) {
-            Bukkit.getPluginManager().registerEvents(listener,this);
-        }
-    }
-
-    protected abstract void shutdown();
-
-    public static void log(String info) {
-        Bukkit.getServer().getLogger().info(info);
-    }
-
 }
