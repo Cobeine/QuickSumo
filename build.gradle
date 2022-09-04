@@ -10,14 +10,18 @@ repositories {
     maven {
         url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/'
     }
+    maven {
+        url = "https://oss.sonatype.org/content/repositories/snapshots/"
+    }
+
 }
 
 dependencies {
     implementation 'org.projectlombok:lombok:1.18.24'
     compileOnly("org.spigotmc:spigot-api:1.8.8-R0.1-SNAPSHOT")
-
 }
 
-test {
-    useJUnitPlatform()
+jar {
+    exclude 'META-INF/**'
+    exclude 'LICENSE'
 }
