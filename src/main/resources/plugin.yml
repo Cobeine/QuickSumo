@@ -1,7 +1,7 @@
 name: QuickSumo
 author: Cobeine
 version: 0.1-INDEV
-main: me.Cobeine.qSumo.Core
+main: me.cobeine.qSumo.Core
 website: "https://github.com/Cobeine/"
 
 commands:
