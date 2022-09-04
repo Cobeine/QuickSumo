@@ -24,12 +24,16 @@
  */
 package me.cobeine.qSumo.Listeners;
 
-import me.cobeine.qSumo.utils.Interfaces.IListener;
+import org.bukkit.Bukkit;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerQuitEvent;
 
-public class QuitListener implements IListener<PlayerQuitEvent> {
-    @Override
-    public void onFire(PlayerQuitEvent event) {
+public class QuitListener implements Listener {
+
+    @EventHandler
+    public void fire(PlayerQuitEvent event) {
+        Bukkit.getServer().broadcastMessage("this shit is crazy my guy");
 
     }
 }

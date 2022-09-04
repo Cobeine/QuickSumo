@@ -26,19 +26,20 @@ package me.cobeine.qSumo.commands.impl;
 
 
 import me.cobeine.qSumo.commands.ICommand;
-import me.cobeine.qSumo.commands.ISubCommand;
 import org.bukkit.entity.Player;
 
 public class QuickSumoCommand implements ICommand {
-
-
+    final SubCommands subCommands;
+    public QuickSumoCommand() {
+        subCommands = new SubCommands();
+    }
     @Override
     public void execute(Player player, String subCommand, String[] args) {
         if (subCommand == null || subCommand.equalsIgnoreCase("help")) {
             //todo help
             return;
         }
-        if (!executeSubCommand(SubCommands.class, subCommand,player,args))
+        if (!executeSubCommand(subCommands, subCommand,player,args))
             player.sendMessage("Invalid subcommand");
     }
 

@@ -31,6 +31,6 @@ public final class SubCommands {
 
     @ISubCommand("test")
     public void test(Player player, String[] args) {
-
+        player.sendMessage("fucking cunt");
     }
 }

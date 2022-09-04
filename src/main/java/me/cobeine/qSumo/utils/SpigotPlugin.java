@@ -25,8 +25,8 @@
 package me.cobeine.qSumo.utils;
 
 import me.cobeine.qSumo.commands.ICommand;
-import me.cobeine.qSumo.utils.Interfaces.IListener;
 import org.bukkit.Bukkit;
+import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public abstract class SpigotPlugin extends JavaPlugin {
@@ -55,8 +55,8 @@ public abstract class SpigotPlugin extends JavaPlugin {
 
     protected abstract void registerListeners();
 
-    public void registerListeners(IListener<?>... listeners) {
-        for (IListener<?> listener : listeners) {
+    public void registerListeners(Listener... listeners) {
+        for (Listener listener : listeners) {
             Bukkit.getPluginManager().registerEvents(listener,this);
         }
     }

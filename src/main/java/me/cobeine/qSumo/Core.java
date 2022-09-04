@@ -29,6 +29,7 @@ import me.cobeine.qSumo.Listeners.QuitListener;
 import me.cobeine.qSumo.commands.impl.QuickSumoCommand;
 import me.cobeine.qSumo.utils.SpigotPlugin;
 import me.cobeine.qSumo.utils.metrics.MetricsImpl;
+
 @Getter
 public class Core extends SpigotPlugin {
     private static Core instance;
