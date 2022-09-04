@@ -25,6 +25,7 @@
 package me.cobeine.qSumo.Managers;
 
 import lombok.Getter;
+import me.cobeine.qSumo.utils.enums.GameState;
 import org.bukkit.entity.Player;
 
 import java.util.HashSet;
@@ -32,6 +33,7 @@ import java.util.Set;
 @Getter
 public class SumoManager implements GameManager{
     private final Set<Player> players;
+    private GameState gameState;
     public SumoManager() {
         players = new HashSet<>();
         setup();
@@ -70,5 +72,15 @@ public class SumoManager implements GameManager{
     @Override
     public void end() {
 
+    }
+
+    @Override
+    public void setGameState(GameState state) {
+
+    }
+
+    @Override
+    public GameState getGameState() {
+        return null;
     }
 }

@@ -26,6 +26,8 @@ package me.cobeine.qSumo;
 
 import lombok.Getter;
 import me.cobeine.qSumo.Listeners.QuitListener;
+import me.cobeine.qSumo.Managers.GameManager;
+import me.cobeine.qSumo.Managers.SumoManager;
 import me.cobeine.qSumo.commands.impl.QuickSumoCommand;
 import me.cobeine.qSumo.utils.SpigotPlugin;
 import me.cobeine.qSumo.utils.metrics.MetricsImpl;
@@ -33,11 +35,13 @@ import me.cobeine.qSumo.utils.metrics.MetricsImpl;
 @Getter
 public class Core extends SpigotPlugin {
     private static Core instance;
+    private GameManager gameManager;
     private MetricsImpl metrics;
     @Override
     protected void init() {
         instance = this;
-     //   metrics = new MetricsImpl(this);
+        gameManager = new SumoManager();
+        metrics = new MetricsImpl(this);
     }
 
     @Override

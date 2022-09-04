@@ -24,6 +24,7 @@
  */
 package me.cobeine.qSumo.Managers;
 
+import me.cobeine.qSumo.utils.enums.GameState;
 import org.bukkit.entity.Player;
 
 public interface GameManager {
@@ -41,5 +42,9 @@ public interface GameManager {
     void endRound();
 
     void end();
+
+    void setGameState(GameState state);
+
+    GameState getGameState();
 
 }
