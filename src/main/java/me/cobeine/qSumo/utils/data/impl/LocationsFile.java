@@ -26,14 +26,30 @@ package me.cobeine.qSumo.utils.data.impl;
 
 import me.cobeine.qSumo.Core;
 import me.cobeine.qSumo.utils.data.YamlFile;
+import me.cobeine.qSumo.utils.enums.LocationType;
+import org.bukkit.Location;
 
 public class LocationsFile extends YamlFile {
+    public static LocationsFile instance;
     public LocationsFile() {
         super("locations", Core.getInstance().getDataFolder().getPath());
+        instance = this;
     }
 
     @Override
     public void setDefaults() {
         setDefaultConfig();
+    }
+    public void setLocation(LocationType type, Location location) {
+      getConfig().set("Locations." + type.toString(), location);
+        save();
+    }
+
+    public Location getLocation(LocationType type) {
+        return (Location)getConfig().get("Locations." + type.toString());
+    }
+
+    public static LocationsFile getInstance() {
+        return instance;
     }
 }

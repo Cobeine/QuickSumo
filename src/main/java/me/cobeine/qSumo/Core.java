@@ -30,6 +30,9 @@ import me.cobeine.qSumo.Managers.GameManager;
 import me.cobeine.qSumo.Managers.SumoManager;
 import me.cobeine.qSumo.commands.impl.QuickSumoCommand;
 import me.cobeine.qSumo.utils.SpigotPlugin;
+import me.cobeine.qSumo.utils.data.YamlFile;
+import me.cobeine.qSumo.utils.data.impl.ConfigFile;
+import me.cobeine.qSumo.utils.data.impl.LocationsFile;
 import me.cobeine.qSumo.utils.metrics.MetricsImpl;
 
 @Getter
@@ -37,12 +40,15 @@ public class Core extends SpigotPlugin {
     private static Core instance;
     private GameManager gameManager;
     private MetricsImpl metrics;
+    private YamlFile configFile, locationsFile;
 
 
 
     @Override
     protected void init() {
         instance = this;
+        configFile = new ConfigFile();
+        locationsFile = new LocationsFile();
         gameManager = new SumoManager();
         metrics = new MetricsImpl(this);
     }
@@ -58,9 +64,13 @@ public class Core extends SpigotPlugin {
     }
 
 
-    @Override
+    @Override //idk, I have trust issues with java's garbage collector.
     protected void shutdown() {
-
+        instance = null;
+        configFile = null;
+        locationsFile = null;
+        gameManager = null;
+        metrics = null;
     }
     public static Core getInstance() {
         return instance;

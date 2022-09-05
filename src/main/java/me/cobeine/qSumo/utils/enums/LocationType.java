@@ -24,6 +24,17 @@
  */
 package me.cobeine.qSumo.utils.enums;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public enum LocationType {
-    OPPONENT_ONE,OPPONENT_TWO,ARENA_SPAWN,LOSERS_SPAWN
+    OPPONENT_ONE,OPPONENT_TWO,ARENA_SPAWN,LOSERS_SPAWN;
+
+    public static String[] stringValues() {
+        List<String> values = new ArrayList<>();
+        for (LocationType type : LocationType.values()) {
+            values.add(type.toString().toLowerCase());
+        }
+        return values.toArray(new String[]{});
+    }
 }

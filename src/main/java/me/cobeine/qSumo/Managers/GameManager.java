@@ -24,6 +24,7 @@
  */
 package me.cobeine.qSumo.Managers;
 
+import me.cobeine.qSumo.utils.Interfaces.Callback;
 import me.cobeine.qSumo.utils.enums.GameState;
 import org.bukkit.entity.Player;
 
@@ -31,20 +32,22 @@ public interface GameManager {
 
     void setup();
 
-    void preStart();
+    void begin();
+    void preStart(Callback callback);
 
     void join(Player player);
 
-    void postStart();
+    void postStart(Callback callback);
 
-    void startNewRound();
+    void startNewRound(Callback callback);
 
-    void endRound();
+    void endRound(Callback callback);
 
-    void end();
+    void end(Callback callback);
 
     void setGameState(GameState state);
 
     GameState getGameState();
 
+    boolean canStart();
 }

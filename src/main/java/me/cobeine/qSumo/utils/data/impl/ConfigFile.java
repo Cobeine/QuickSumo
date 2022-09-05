@@ -28,12 +28,18 @@ import me.cobeine.qSumo.Core;
 import me.cobeine.qSumo.utils.data.YamlFile;
 
 public class ConfigFile extends YamlFile {
+    public static ConfigFile instance;
     public ConfigFile() {
         super("config", Core.getInstance().getDataFolder().getPath());
+        instance = this;
     }
 
     @Override
     public void setDefaults() {
         setDefaultConfig();
+    }
+
+    public static ConfigFile getInstance() {
+        return instance;
     }
 }

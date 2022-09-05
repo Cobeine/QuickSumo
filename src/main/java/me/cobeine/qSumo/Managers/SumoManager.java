@@ -25,6 +25,7 @@
 package me.cobeine.qSumo.Managers;
 
 import lombok.Getter;
+import me.cobeine.qSumo.utils.Interfaces.Callback;
 import me.cobeine.qSumo.utils.enums.GameState;
 import org.bukkit.entity.Player;
 
@@ -45,7 +46,12 @@ public class SumoManager implements GameManager{
     }
 
     @Override
-    public void preStart() {
+    public void begin() {
+
+    }
+
+    @Override
+    public void preStart(Callback callback) {
 
     }
 
@@ -55,32 +61,33 @@ public class SumoManager implements GameManager{
     }
 
     @Override
-    public void postStart() {
+    public void postStart(Callback callback) {
 
     }
 
     @Override
-    public void startNewRound() {
+    public void startNewRound(Callback callback) {
 
     }
 
     @Override
-    public void endRound() {
+    public void endRound(Callback callback) {
 
     }
 
     @Override
-    public void end() {
+    public void end(Callback callback) {
 
     }
 
     @Override
     public void setGameState(GameState state) {
-
+        this.gameState = state;
     }
 
     @Override
-    public GameState getGameState() {
-        return null;
+    public boolean canStart() {
+        return false;
     }
+
 }

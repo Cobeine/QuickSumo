@@ -25,5 +25,5 @@
 package me.cobeine.qSumo.utils.enums;
 
 public enum GameState {
-    IDLE,OPEN,STARTING,FIGHTING;
+    IDLE,STARTING,FIGHTING;
 }
