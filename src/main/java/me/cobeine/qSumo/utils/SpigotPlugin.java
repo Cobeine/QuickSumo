@@ -24,6 +24,7 @@
  */
 package me.cobeine.qSumo.utils;
 
+import me.cobeine.qSumo.Core;
 import me.cobeine.qSumo.commands.ICommand;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Listener;
@@ -63,6 +64,13 @@ public abstract class SpigotPlugin extends JavaPlugin {
 
     protected abstract void shutdown();
 
+    public static String getConfigString(String key) {
+        return Core.getInstance().getConfig().getString(key);
+    }
+
+    public static boolean getConfigBoolean(String key) {
+        return Core.getInstance().getConfig().getBoolean(key);
+    }
     public static void log(String info) {
         Bukkit.getServer().getLogger().info(info);
     }

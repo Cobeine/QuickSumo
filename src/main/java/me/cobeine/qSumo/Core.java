@@ -37,6 +37,9 @@ public class Core extends SpigotPlugin {
     private static Core instance;
     private GameManager gameManager;
     private MetricsImpl metrics;
+
+
+
     @Override
     protected void init() {
         instance = this;
@@ -58,5 +61,8 @@ public class Core extends SpigotPlugin {
     @Override
     protected void shutdown() {
 
+    }
+    public static Core getInstance() {
+        return instance;
     }
 }

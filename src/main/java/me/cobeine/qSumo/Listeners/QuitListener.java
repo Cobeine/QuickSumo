@@ -24,6 +24,7 @@
  */
 package me.cobeine.qSumo.Listeners;
 
+import me.cobeine.qSumo.Core;
 import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
