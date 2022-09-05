@@ -22,20 +22,9 @@
  * SOFTWARE. YOU ARE NOT ALLOWED TO RE-DISTRIBUTE AND/OR REPUBLISH. YOU ARE NOT ALLOWED TO FORK
  * UNLESS GIVEN CREDIT TO THE ORIGINAL AUTHOR (COBEINE)
  */
-package me.cobeine.qSumo.utils.enums;
+package me.cobeine.sumo.utils.Interfaces;
 
+public interface Callback {
 
-import me.cobeine.qSumo.Core;
-import net.md_5.bungee.api.ChatColor;
-
-public class Chat {
-
-    public static String color(String key) {
-        String prefix = "";
-        if (Core.getConfigBoolean("Prefix.enabled"))
-            prefix = Core.getConfigString("Prefix.value");
-
-        return ChatColor.translateAlternateColorCodes('&',
-                prefix + Core.getConfigString(key));
-    }
+    void call();
 }

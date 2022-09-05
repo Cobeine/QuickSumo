@@ -22,72 +22,16 @@
  * SOFTWARE. YOU ARE NOT ALLOWED TO RE-DISTRIBUTE AND/OR REPUBLISH. YOU ARE NOT ALLOWED TO FORK
  * UNLESS GIVEN CREDIT TO THE ORIGINAL AUTHOR (COBEINE)
  */
-package me.cobeine.qSumo.Managers;
+package me.cobeine.sumo.commands;
 
-import lombok.Getter;
-import me.cobeine.qSumo.utils.Interfaces.Callback;
-import me.cobeine.qSumo.utils.enums.GameState;
-import org.bukkit.entity.Player;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
-import java.util.HashSet;
-import java.util.Set;
-@Getter
-public class SumoManager implements GameManager{
-    private final Set<Player> players;
-    private GameState gameState;
-    public SumoManager() {
-        players = new HashSet<>();
-        setup();
-    }
-
-    @Override
-    public void setup() {
-
-    }
-
-    @Override
-    public void begin() {
-
-    }
-
-    @Override
-    public void preStart(Callback callback) {
-
-    }
-
-    @Override
-    public void join(Player player) {
-
-    }
-
-    @Override
-    public void postStart(Callback callback) {
-
-    }
-
-    @Override
-    public void startNewRound(Callback callback) {
-
-    }
-
-    @Override
-    public void endRound(Callback callback) {
-
-    }
-
-    @Override
-    public void end(Callback callback) {
-
-    }
-
-    @Override
-    public void setGameState(GameState state) {
-        this.gameState = state;
-    }
-
-    @Override
-    public boolean canStart() {
-        return false;
-    }
-
+@Retention(RetentionPolicy.RUNTIME)
+@Target({ElementType.METHOD, ElementType.TYPE, ElementType.ANNOTATION_TYPE})
+public @interface ISubCommand {
+    String value();
+    String permissionTag();
 }

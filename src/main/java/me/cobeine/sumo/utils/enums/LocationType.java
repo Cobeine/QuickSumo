@@ -22,16 +22,19 @@
  * SOFTWARE. YOU ARE NOT ALLOWED TO RE-DISTRIBUTE AND/OR REPUBLISH. YOU ARE NOT ALLOWED TO FORK
  * UNLESS GIVEN CREDIT TO THE ORIGINAL AUTHOR (COBEINE)
  */
-package me.cobeine.qSumo.commands;
+package me.cobeine.sumo.utils.enums;
 
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+import java.util.ArrayList;
+import java.util.List;
 
-@Retention(RetentionPolicy.RUNTIME)
-@Target({ElementType.METHOD, ElementType.TYPE, ElementType.ANNOTATION_TYPE})
-public @interface ISubCommand {
-    String value();
-    String permissionTag();
+public enum LocationType {
+    OPPONENT_ONE,OPPONENT_TWO,ARENA_SPAWN,LOSERS_SPAWN;
+
+    public static String[] stringValues() {
+        List<String> values = new ArrayList<>();
+        for (LocationType type : LocationType.values()) {
+            values.add(type.toString().toLowerCase());
+        }
+        return values.toArray(new String[]{});
+    }
 }

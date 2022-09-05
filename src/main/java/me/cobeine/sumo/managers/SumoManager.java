@@ -22,9 +22,72 @@
  * SOFTWARE. YOU ARE NOT ALLOWED TO RE-DISTRIBUTE AND/OR REPUBLISH. YOU ARE NOT ALLOWED TO FORK
  * UNLESS GIVEN CREDIT TO THE ORIGINAL AUTHOR (COBEINE)
  */
-package me.cobeine.qSumo.utils.Interfaces;
+package me.cobeine.sumo.managers;
 
-public interface Callback {
+import lombok.Getter;
+import me.cobeine.sumo.utils.Interfaces.Callback;
+import me.cobeine.sumo.utils.enums.GameState;
+import org.bukkit.entity.Player;
 
-    void call();
+import java.util.HashSet;
+import java.util.Set;
+@Getter
+public class SumoManager implements GameManager{
+    private final Set<Player> players;
+    private GameState gameState;
+    public SumoManager() {
+        players = new HashSet<>();
+        setup();
+    }
+
+    @Override
+    public void setup() {
+
+    }
+
+    @Override
+    public void begin() {
+
+    }
+
+    @Override
+    public void preStart(Callback callback) {
+
+    }
+
+    @Override
+    public void join(Player player) {
+
+    }
+
+    @Override
+    public void postStart(Callback callback) {
+
+    }
+
+    @Override
+    public void startNewRound(Callback callback) {
+
+    }
+
+    @Override
+    public void endRound(Callback callback) {
+
+    }
+
+    @Override
+    public void end(Callback callback) {
+
+    }
+
+    @Override
+    public void setGameState(GameState state) {
+        this.gameState = state;
+    }
+
+    @Override
+    public boolean canStart() {
+        return false;
+    }
+
 }

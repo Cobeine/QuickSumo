@@ -22,18 +22,18 @@
  * SOFTWARE. YOU ARE NOT ALLOWED TO RE-DISTRIBUTE AND/OR REPUBLISH. YOU ARE NOT ALLOWED TO FORK
  * UNLESS GIVEN CREDIT TO THE ORIGINAL AUTHOR (COBEINE)
  */
-package me.cobeine.qSumo;
+package me.cobeine.sumo;
 
 import lombok.Getter;
-import me.cobeine.qSumo.Listeners.QuitListener;
-import me.cobeine.qSumo.Managers.GameManager;
-import me.cobeine.qSumo.Managers.SumoManager;
-import me.cobeine.qSumo.commands.impl.QuickSumoCommand;
-import me.cobeine.qSumo.utils.SpigotPlugin;
-import me.cobeine.qSumo.utils.data.YamlFile;
-import me.cobeine.qSumo.utils.data.impl.ConfigFile;
-import me.cobeine.qSumo.utils.data.impl.LocationsFile;
-import me.cobeine.qSumo.utils.metrics.MetricsImpl;
+import me.cobeine.sumo.listeners.QuitListener;
+import me.cobeine.sumo.managers.GameManager;
+import me.cobeine.sumo.managers.SumoManager;
+import me.cobeine.sumo.commands.impl.QuickSumoCommand;
+import me.cobeine.sumo.utils.SpigotPlugin;
+import me.cobeine.sumo.utils.data.YamlFile;
+import me.cobeine.sumo.utils.data.impl.ConfigFile;
+import me.cobeine.sumo.utils.data.impl.LocationsFile;
+import me.cobeine.sumo.utils.metrics.MetricsImpl;
 
 @Getter
 public class Core extends SpigotPlugin {

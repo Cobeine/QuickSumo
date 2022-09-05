@@ -22,10 +22,10 @@
  * SOFTWARE. YOU ARE NOT ALLOWED TO RE-DISTRIBUTE AND/OR REPUBLISH. YOU ARE NOT ALLOWED TO FORK
  * UNLESS GIVEN CREDIT TO THE ORIGINAL AUTHOR (COBEINE)
  */
-package me.cobeine.qSumo.utils.data.impl;
+package me.cobeine.sumo.utils.data.impl;
 
-import me.cobeine.qSumo.Core;
-import me.cobeine.qSumo.utils.data.YamlFile;
+import me.cobeine.sumo.Core;
+import me.cobeine.sumo.utils.data.YamlFile;
 
 public class ConfigFile extends YamlFile {
     public static ConfigFile instance;

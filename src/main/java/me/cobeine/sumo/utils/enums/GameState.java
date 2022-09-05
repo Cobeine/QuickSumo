@@ -22,19 +22,8 @@
  * SOFTWARE. YOU ARE NOT ALLOWED TO RE-DISTRIBUTE AND/OR REPUBLISH. YOU ARE NOT ALLOWED TO FORK
  * UNLESS GIVEN CREDIT TO THE ORIGINAL AUTHOR (COBEINE)
  */
-package me.cobeine.qSumo.utils.enums;
+package me.cobeine.sumo.utils.enums;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public enum LocationType {
-    OPPONENT_ONE,OPPONENT_TWO,ARENA_SPAWN,LOSERS_SPAWN;
-
-    public static String[] stringValues() {
-        List<String> values = new ArrayList<>();
-        for (LocationType type : LocationType.values()) {
-            values.add(type.toString().toLowerCase());
-        }
-        return values.toArray(new String[]{});
-    }
+public enum GameState {
+    IDLE,STARTING,FIGHTING;
 }

@@ -22,8 +22,34 @@
  * SOFTWARE. YOU ARE NOT ALLOWED TO RE-DISTRIBUTE AND/OR REPUBLISH. YOU ARE NOT ALLOWED TO FORK
  * UNLESS GIVEN CREDIT TO THE ORIGINAL AUTHOR (COBEINE)
  */
-package me.cobeine.qSumo.utils.enums;
+package me.cobeine.sumo.utils.data.impl;
 
-public enum GameState {
-    IDLE,STARTING,FIGHTING;
+import me.cobeine.sumo.Core;
+import me.cobeine.sumo.utils.data.YamlFile;
+import me.cobeine.sumo.utils.enums.LocationType;
+import org.bukkit.Location;
+
+public class LocationsFile extends YamlFile {
+    public static LocationsFile instance;
+    public LocationsFile() {
+        super("locations", Core.getInstance().getDataFolder().getPath());
+        instance = this;
+    }
+
+    @Override
+    public void setDefaults() {
+        setDefaultConfig();
+    }
+    public void setLocation(LocationType type, Location location) {
+      getConfig().set("Locations." + type.toString(), location);
+        save();
+    }
+
+    public Location getLocation(LocationType type) {
+        return (Location)getConfig().get("Locations." + type.toString());
+    }
+
+    public static LocationsFile getInstance() {
+        return instance;
+    }
 }

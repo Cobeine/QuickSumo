@@ -22,28 +22,18 @@
  * SOFTWARE. YOU ARE NOT ALLOWED TO RE-DUSRIBUTE AND/OR REPUBLISH. YOU ARE NOT ALLOWED TO FORK
  * UNLESS GIVEN CREDIT TO THE ORIGINAL AUTHOR (COBEINE)
  */
-package me.cobeine.qSumo.commands.impl;
+package me.cobeine.sumo.listeners;
 
+import org.bukkit.Bukkit;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerQuitEvent;
 
-import me.cobeine.qSumo.commands.ICommand;
-import me.cobeine.qSumo.utils.enums.Chat;
-import org.bukkit.entity.Player;
+public class QuitListener implements Listener {
 
-public class QuickSumoCommand implements ICommand {
-    final SubCommands subCommands;
-    public QuickSumoCommand() {
-        subCommands = new SubCommands();
+    @EventHandler
+    public void fire(PlayerQuitEvent event) {
+        Bukkit.getServer().broadcastMessage("this shit is crazy my guy");
+
     }
-    @Override
-    public void execute(Player player, String subCommand, String[] args) {
-        if (subCommand == null || subCommand.equalsIgnoreCase("help")) {
-            player.sendMessage(Chat.color("Messages.help_message"));
-            return;
-        }
-        if (!executeSubCommand(subCommands, subCommand,player,args))
-            player.sendMessage(Chat.color("Messages.invalid_args"));
-    }
-
-
-
 }

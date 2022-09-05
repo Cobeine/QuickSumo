@@ -22,10 +22,10 @@
  * SOFTWARE. YOU ARE NOT ALLOWED TO RE-DUSRIBUTE AND/OR REPUBLISH. YOU ARE NOT ALLOWED TO FORK
  * UNLESS GIVEN CREDIT TO THE ORIGINAL AUTHOR (COBEINE)
  */
-package me.cobeine.qSumo.commands;
+package me.cobeine.sumo.commands;
 
-import me.cobeine.qSumo.Core;
-import me.cobeine.qSumo.utils.enums.Chat;
+import me.cobeine.sumo.Core;
+import me.cobeine.sumo.utils.enums.Chat;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;

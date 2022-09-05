@@ -22,14 +22,14 @@
  * SOFTWARE. YOU ARE NOT ALLOWED TO RE-DISTRIBUTE AND/OR REPUBLISH. YOU ARE NOT ALLOWED TO FORK
  * UNLESS GIVEN CREDIT TO THE ORIGINAL AUTHOR (COBEINE)
  */
-package me.cobeine.qSumo.commands.impl;
+package me.cobeine.sumo.commands.impl;
 
-import me.cobeine.qSumo.Core;
-import me.cobeine.qSumo.commands.ISubCommand;
-import me.cobeine.qSumo.utils.data.impl.LocationsFile;
-import me.cobeine.qSumo.utils.enums.Chat;
-import me.cobeine.qSumo.utils.enums.GameState;
-import me.cobeine.qSumo.utils.enums.LocationType;
+import me.cobeine.sumo.Core;
+import me.cobeine.sumo.commands.ISubCommand;
+import me.cobeine.sumo.utils.data.impl.LocationsFile;
+import me.cobeine.sumo.utils.enums.Chat;
+import me.cobeine.sumo.utils.enums.GameState;
+import me.cobeine.sumo.utils.enums.LocationType;
 import org.bukkit.entity.Player;
 
 public  class SubCommands {

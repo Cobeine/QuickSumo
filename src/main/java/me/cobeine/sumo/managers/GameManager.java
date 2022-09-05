@@ -22,10 +22,10 @@
  * SOFTWARE. YOU ARE NOT ALLOWED TO RE-DISTRIBUTE AND/OR REPUBLISH. YOU ARE NOT ALLOWED TO FORK
  * UNLESS GIVEN CREDIT TO THE ORIGINAL AUTHOR (COBEINE)
  */
-package me.cobeine.qSumo.Managers;
+package me.cobeine.sumo.managers;
 
-import me.cobeine.qSumo.utils.Interfaces.Callback;
-import me.cobeine.qSumo.utils.enums.GameState;
+import me.cobeine.sumo.utils.Interfaces.Callback;
+import me.cobeine.sumo.utils.enums.GameState;
 import org.bukkit.entity.Player;
 
 public interface GameManager {

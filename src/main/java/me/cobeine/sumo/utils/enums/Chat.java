@@ -22,34 +22,20 @@
  * SOFTWARE. YOU ARE NOT ALLOWED TO RE-DISTRIBUTE AND/OR REPUBLISH. YOU ARE NOT ALLOWED TO FORK
  * UNLESS GIVEN CREDIT TO THE ORIGINAL AUTHOR (COBEINE)
  */
-package me.cobeine.qSumo.utils.data.impl;
+package me.cobeine.sumo.utils.enums;
 
-import me.cobeine.qSumo.Core;
-import me.cobeine.qSumo.utils.data.YamlFile;
-import me.cobeine.qSumo.utils.enums.LocationType;
-import org.bukkit.Location;
 
-public class LocationsFile extends YamlFile {
-    public static LocationsFile instance;
-    public LocationsFile() {
-        super("locations", Core.getInstance().getDataFolder().getPath());
-        instance = this;
-    }
+import me.cobeine.sumo.Core;
+import net.md_5.bungee.api.ChatColor;
 
-    @Override
-    public void setDefaults() {
-        setDefaultConfig();
-    }
-    public void setLocation(LocationType type, Location location) {
-      getConfig().set("Locations." + type.toString(), location);
-        save();
-    }
+public class Chat {
 
-    public Location getLocation(LocationType type) {
-        return (Location)getConfig().get("Locations." + type.toString());
-    }
+    public static String color(String key) {
+        String prefix = "";
+        if (Core.getConfigBoolean("Prefix.enabled"))
+            prefix = Core.getConfigString("Prefix.value");
 
-    public static LocationsFile getInstance() {
-        return instance;
+        return ChatColor.translateAlternateColorCodes('&',
+                prefix + Core.getConfigString(key));
     }
 }

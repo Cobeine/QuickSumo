@@ -22,10 +22,10 @@
  * SOFTWARE. YOU ARE NOT ALLOWED TO RE-DISTRIBUTE AND/OR REPUBLISH. YOU ARE NOT ALLOWED TO FORK
  * UNLESS GIVEN CREDIT TO THE ORIGINAL AUTHOR (COBEINE)
  */
-package me.cobeine.qSumo.utils;
+package me.cobeine.sumo.utils;
 
-import me.cobeine.qSumo.commands.ICommand;
-import me.cobeine.qSumo.utils.data.impl.ConfigFile;
+import me.cobeine.sumo.commands.ICommand;
+import me.cobeine.sumo.utils.data.impl.ConfigFile;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;

@@ -1,4 +1,4 @@
-package me.cobeine.qSumo.utils.metrics;
+package me.cobeine.sumo.utils.metrics;
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
