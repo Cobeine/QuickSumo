@@ -1,0 +1,32 @@
+#This is the configuration file of QuickSumo, Here you will be able to modify
+#Messages and some other settings.
+
+Prefix:
+  enabled: true
+  value: "&8│ &e&lSUMO &8▶&f "
+
+#Command permissions
+Permissions:
+  sumo_start: "sumo.start"
+  sumo_setup: "sumo.admin"
+
+#This is used to save and load players inventory before entering the tournament and after
+Inventory_Saver:
+  enabled: true
+
+Messages:
+  help_message:
+    - "&7/Sumo &eStart &7Start sumo tournament"
+    - "&7/Sumo &eSetLocation &7<LocationType> &7Set targeted location"
+    - "&7/Sumo &eReload &7Reload configuration file and stop running tournament"
+  invalid_args: "&cInvalid arguments"
+  no_permission: "&cSorry, but you're not allowed to execute this command"
+  console_only: "&cOnly players can execute this command"
+  modify_location_failed: "&cYou can't modify locations while the tournament is running"
+  start_failed: "&cFailed to start sumo tournament, one or more setting is not set."
+  tournament_already_started: "&cTournament is already in use"
+  tournament_started:
+    - "&e{player} &7has started a &e&lSUMO Tournament"
+    - "Type &e/Sumo join &7or &a[CLICK ME]"
+
+
