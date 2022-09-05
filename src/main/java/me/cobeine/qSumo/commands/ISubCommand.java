@@ -33,4 +33,5 @@ import java.lang.annotation.Target;
 @Target({ElementType.METHOD, ElementType.TYPE, ElementType.ANNOTATION_TYPE})
 public @interface ISubCommand {
     String value();
+    String permissionTag();
 }

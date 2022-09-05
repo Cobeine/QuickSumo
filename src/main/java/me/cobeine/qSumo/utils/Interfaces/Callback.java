@@ -19,31 +19,12 @@
  * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE. YOU ARE NOT ALLOWED TO RE-DUSRIBUTE AND/OR REPUBLISH. YOU ARE NOT ALLOWED TO FORK
+ * SOFTWARE. YOU ARE NOT ALLOWED TO RE-DISTRIBUTE AND/OR REPUBLISH. YOU ARE NOT ALLOWED TO FORK
  * UNLESS GIVEN CREDIT TO THE ORIGINAL AUTHOR (COBEINE)
  */
-package me.cobeine.qSumo.commands.impl;
+package me.cobeine.qSumo.utils.Interfaces;
 
+public interface Callback {
 
-import me.cobeine.qSumo.commands.ICommand;
-import me.cobeine.qSumo.utils.enums.Chat;
-import org.bukkit.entity.Player;
-
-public class QuickSumoCommand implements ICommand {
-    final SubCommands subCommands;
-    public QuickSumoCommand() {
-        subCommands = new SubCommands();
-    }
-    @Override
-    public void execute(Player player, String subCommand, String[] args) {
-        if (subCommand == null || subCommand.equalsIgnoreCase("help")) {
-            player.sendMessage(Chat.color("Messages.help_message"));
-            return;
-        }
-        if (!executeSubCommand(subCommands, subCommand,player,args))
-            player.sendMessage(Chat.color("Messages.invalid_args"));
-    }
-
-
-
+    void call();
 }

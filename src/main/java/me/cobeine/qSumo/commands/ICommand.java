@@ -24,6 +24,8 @@
  */
 package me.cobeine.qSumo.commands;
 
+import me.cobeine.qSumo.Core;
+import me.cobeine.qSumo.utils.enums.Chat;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -37,7 +39,7 @@ public interface ICommand extends CommandExecutor {
     @Override
     default boolean onCommand(CommandSender sender, Command command, String label, String[] args){
         if (!(sender instanceof Player)){
-            //TODO message
+            sender.sendMessage(Chat.color("Messages.player_only"));
             return true;
         }
         Player player = (Player) sender;
@@ -66,10 +68,13 @@ public interface ICommand extends CommandExecutor {
                 ISubCommand annotation = method.getAnnotation(ISubCommand.class);
                 String targetedSub = annotation.value();
 
-
                 if (targetedSub.equalsIgnoreCase(subCommand))
-                    try {method.invoke(clazz, executor, args);
-                        return true;} catch (Exception ignored) {}
+                    if (executor.hasPermission(Core.getConfigString(annotation.permissionTag())))
+                         try {method.invoke(clazz, executor, args);return true;} catch (Exception ignored) {}
+                    else {
+                        executor.sendMessage(Chat.color("Messages.no_permission"));
+                        return true;
+                    }
 
 
             }
