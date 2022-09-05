@@ -36,6 +36,6 @@ public class Chat {
             prefix = Core.getConfigString("Prefix.value");
 
         return ChatColor.translateAlternateColorCodes('&',
-                Core.getConfigString(key));
+                prefix + Core.getConfigString(key));
     }
 }
