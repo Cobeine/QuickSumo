@@ -55,7 +55,7 @@ Broadcasts:
     - "Type &e/Sumo join &7or &a[CLICK ME]"
   sumo_join: "&e{player} &7has joined"
   round_start: "&7Round &e#{roundNumber}: &e{player1} &7VS &e{player2}"
-  tournament_start: "&7Touّّrnament has &eStarted!"
+  tournament_start: "&7Tournament started"
   round_win: "&7Player &e{winner} &7won against &c{loser}"
 
 
