@@ -25,7 +25,7 @@
 package me.cobeine.sumo.commands;
 
 import me.cobeine.sumo.Core;
-import me.cobeine.sumo.utils.enums.Chat;
+import me.cobeine.sumo.utils.Chat;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;

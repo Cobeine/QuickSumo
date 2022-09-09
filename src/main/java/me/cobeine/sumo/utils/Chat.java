@@ -22,7 +22,7 @@
  * SOFTWARE. YOU ARE NOT ALLOWED TO RE-DISTRIBUTE AND/OR REPUBLISH. YOU ARE NOT ALLOWED TO FORK
  * UNLESS GIVEN CREDIT TO THE ORIGINAL AUTHOR (COBEINE)
  */
-package me.cobeine.sumo.utils.enums;
+package me.cobeine.sumo.utils;
 
 
 import me.cobeine.sumo.Core;

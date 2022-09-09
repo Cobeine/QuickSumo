@@ -27,7 +27,7 @@ package me.cobeine.sumo.commands.impl;
 import me.cobeine.sumo.Core;
 import me.cobeine.sumo.commands.ISubCommand;
 import me.cobeine.sumo.utils.data.impl.LocationsFile;
-import me.cobeine.sumo.utils.enums.Chat;
+import me.cobeine.sumo.utils.Chat;
 import me.cobeine.sumo.utils.enums.GameState;
 import me.cobeine.sumo.utils.enums.LocationType;
 import org.bukkit.entity.Player;

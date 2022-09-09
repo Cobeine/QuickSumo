@@ -26,7 +26,7 @@ package me.cobeine.sumo.commands.impl;
 
 
 import me.cobeine.sumo.commands.Command;
-import me.cobeine.sumo.utils.enums.Chat;
+import me.cobeine.sumo.utils.Chat;
 import org.bukkit.entity.Player;
 
 public class QuickSumoCommand extends Command{

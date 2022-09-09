@@ -30,6 +30,8 @@ import org.bukkit.Bukkit;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.io.File;
+
 public abstract class SpigotPlugin extends JavaPlugin {
     public void onEnable() {
         log(
@@ -81,6 +83,7 @@ public abstract class SpigotPlugin extends JavaPlugin {
     @SuppressWarnings("ResultOfMethodCallIgnored")
     public void createDataFolder() {
         Core.getInstance().getDataFolder().mkdirs();
+        new File(Core.getInstance().getDataFolder().getPath() + "/inventories").mkdirs();
     }
 
 }

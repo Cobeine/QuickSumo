@@ -25,6 +25,7 @@
 package me.cobeine.sumo.utils.data.impl;
 
 import me.cobeine.sumo.Core;
+import me.cobeine.sumo.utils.Interfaces.AsyncTask;
 import me.cobeine.sumo.utils.data.YamlFile;
 import me.cobeine.sumo.utils.enums.LocationType;
 import org.bukkit.Location;
@@ -41,8 +42,10 @@ public class LocationsFile extends YamlFile {
         setDefaultConfig();
     }
     public void setLocation(LocationType type, Location location) {
-      getConfig().set("Locations." + type.toString(), location);
-        save();
+        AsyncTask.run(()->{
+            getConfig().set("Locations." + type.toString(), location);
+            save();
+        });
     }
 
     public Location getLocation(LocationType type) {

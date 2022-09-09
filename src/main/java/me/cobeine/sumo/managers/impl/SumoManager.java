@@ -22,12 +22,14 @@
  * SOFTWARE. YOU ARE NOT ALLOWED TO RE-DISTRIBUTE AND/OR REPUBLISH. YOU ARE NOT ALLOWED TO FORK
  * UNLESS GIVEN CREDIT TO THE ORIGINAL AUTHOR (COBEINE)
  */
-package me.cobeine.sumo.managers;
+package me.cobeine.sumo.managers.impl;
 
 import me.cobeine.sumo.Core;
+import me.cobeine.sumo.managers.GameManager;
+import me.cobeine.sumo.utils.Interfaces.AsyncTask;
 import me.cobeine.sumo.utils.Interfaces.Callback;
 import me.cobeine.sumo.utils.data.impl.LocationsFile;
-import me.cobeine.sumo.utils.enums.Chat;
+import me.cobeine.sumo.utils.Chat;
 import me.cobeine.sumo.utils.enums.GameState;
 import me.cobeine.sumo.utils.enums.LocationType;
 import me.cobeine.sumo.utils.rounds.Round;
@@ -37,7 +39,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.*;
 
-public class SumoManager implements GameManager{
+public class SumoManager implements GameManager {
     private final Set<Player> players;
     private final HashMap<UUID,Location> last_location;
     private GameState gameState;
@@ -59,9 +61,11 @@ public class SumoManager implements GameManager{
 
     @Override
     public void begin(Player player) {
-        broadcastStart(player);
-        setGameState(GameState.STARTING);
-        preStart(() -> postStart(this::startNewRound));
+        AsyncTask.run(()->{
+            broadcastStart(player);
+            setGameState(GameState.STARTING);
+            preStart(() -> postStart(this::startNewRound));
+        });
     }
 
     @Override
@@ -87,10 +91,12 @@ public class SumoManager implements GameManager{
 
     @Override
     public void join(Player player) {
-        players.add(player);
-        alert(Chat.color("Broadcasts.sumo_join").replace("{player}",player.getName()),false);
-        last_location.put(player.getUniqueId(), player.getLocation());
-        player.teleport(LocationsFile.getInstance().getLocation(LocationType.ARENA_SPAWN));
+       AsyncTask.run(()->{
+           players.add(player);
+           alert(Chat.color("Broadcasts.sumo_join").replace("{player}",player.getName()),false);
+           last_location.put(player.getUniqueId(), player.getLocation());
+           player.teleport(LocationsFile.getInstance().getLocation(LocationType.ARENA_SPAWN));
+       });
     }
 
     @Override
@@ -102,11 +108,13 @@ public class SumoManager implements GameManager{
     @Override
     public void startNewRound() {
         //Temporary method of getting players, will replace it with something better next time
-        List<Player> arrayOfPlayers = new ArrayList<>(players);
-        Collections.shuffle(arrayOfPlayers);
-        Player player1 = arrayOfPlayers.get(0), player2 = arrayOfPlayers.get(1);
-        this.currentRound = new Round(player1, player2);
-        currentRound.onStart();
+        AsyncTask.run(()->{
+            List<Player> arrayOfPlayers = new ArrayList<>(players);
+            Collections.shuffle(arrayOfPlayers);
+            Player player1 = arrayOfPlayers.get(0), player2 = arrayOfPlayers.get(1);
+            this.currentRound = new Round(player1, player2);
+            currentRound.onStart();
+        });
 
     }
 

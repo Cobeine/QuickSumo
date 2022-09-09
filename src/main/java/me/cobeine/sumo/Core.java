@@ -27,7 +27,9 @@ package me.cobeine.sumo;
 import lombok.Getter;
 import me.cobeine.sumo.listeners.QuitListener;
 import me.cobeine.sumo.managers.GameManager;
-import me.cobeine.sumo.managers.SumoManager;
+import me.cobeine.sumo.managers.InventorySaver;
+import me.cobeine.sumo.managers.impl.InventoryManager;
+import me.cobeine.sumo.managers.impl.SumoManager;
 import me.cobeine.sumo.commands.impl.QuickSumoCommand;
 import me.cobeine.sumo.utils.SpigotPlugin;
 import me.cobeine.sumo.utils.data.YamlFile;
@@ -42,6 +44,7 @@ public class Core extends SpigotPlugin {
     private MetricsImpl metrics;
     private YamlFile configFile, locationsFile;
     private QuickSumoCommand quickSumoCommand;
+    private InventorySaver inventorySaver;
 
 
 
@@ -53,6 +56,7 @@ public class Core extends SpigotPlugin {
         locationsFile = new LocationsFile();
         gameManager = new SumoManager();
         quickSumoCommand = new QuickSumoCommand("QuickSumo");
+        inventorySaver = new InventoryManager();
         metrics = new MetricsImpl(this);
     }
 
@@ -78,5 +82,9 @@ public class Core extends SpigotPlugin {
     }
     public static Core getInstance() {
         return instance;
+    }
+
+    public InventorySaver getInventorySaver() {
+        return inventorySaver;
     }
 }
