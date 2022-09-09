@@ -30,11 +30,19 @@ import java.util.List;
 public enum LocationType {
     OPPONENT_ONE,OPPONENT_TWO,ARENA_SPAWN,LOSERS_SPAWN;
 
-    public static String[] stringValues() {
+    public static List<String> stringValues() {
         List<String> values = new ArrayList<>();
         for (LocationType type : LocationType.values()) {
             values.add(type.toString().toLowerCase());
         }
-        return values.toArray(new String[]{});
+        return values;
+    }
+
+    public static LocationType get(String value) {
+        for (LocationType type : LocationType.values()) {
+           if (type.toString().equalsIgnoreCase(value))
+               return type;
+        }
+        return null;
     }
 }

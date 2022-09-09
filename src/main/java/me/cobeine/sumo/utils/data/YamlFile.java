@@ -43,7 +43,7 @@ public abstract class YamlFile {
         this.path = path;
         this.name = name;
         this.file = new File(path, name + ".yml");
-
+        createNew();
     }
 
     public void createNew() {

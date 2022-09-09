@@ -24,7 +24,8 @@
  */
 package me.cobeine.sumo.utils;
 
-import me.cobeine.sumo.commands.ICommand;
+import me.cobeine.sumo.Core;
+import me.cobeine.sumo.commands.Command;
 import me.cobeine.sumo.utils.data.impl.ConfigFile;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Listener;
@@ -49,9 +50,9 @@ public abstract class SpigotPlugin extends JavaPlugin {
 
     protected abstract void registerCommands();
 
-    public void registerCommand(String command, ICommand clazz) {
-        Bukkit.getPluginCommand(command).setExecutor(clazz);
-
+    public void registerCommand(Command clazz) {
+        Bukkit.getPluginCommand(clazz.getName()).setExecutor(clazz);
+        Bukkit.getPluginCommand(clazz.getName()).setTabCompleter(clazz.getTabCompleter());
     }
 
     protected abstract void registerListeners();
@@ -73,6 +74,9 @@ public abstract class SpigotPlugin extends JavaPlugin {
     }
     public static void log(String info) {
         Bukkit.getServer().getLogger().info(info);
+    }
+    public void createDataFolder() {
+        Core.getInstance().getDataFolder().mkdirs();
     }
 
 }

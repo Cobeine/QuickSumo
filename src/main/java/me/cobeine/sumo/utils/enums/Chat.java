@@ -31,11 +31,15 @@ import net.md_5.bungee.api.ChatColor;
 public class Chat {
 
     public static String color(String key) {
-        String prefix = "";
-        if (Core.getConfigBoolean("Prefix.enabled"))
-            prefix = Core.getConfigString("Prefix.value");
-
+        String prefix = (Core.getConfigBoolean("Prefix.enabled") ? Core.getConfigString("Prefix.value") : "");
         return ChatColor.translateAlternateColorCodes('&',
                 prefix + Core.getConfigString(key));
+    }
+
+    public static String coloredList(String key) {
+        String prefix = (Core.getConfigBoolean("Prefix.enabled") ? Core.getConfigString("Prefix.value") : "");
+        String text = Core.getConfigString(key);
+        text = text.substring(1, text.length() - 1).replace(", ", "\n" + prefix);
+        return ChatColor.translateAlternateColorCodes('&',prefix + text);
     }
 }

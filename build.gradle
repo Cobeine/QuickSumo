@@ -18,10 +18,12 @@ repositories {
 
 dependencies {
     implementation 'org.projectlombok:lombok:1.18.24'
+    annotationProcessor 'org.projectlombok:lombok:1.18.24'
     compileOnly("org.spigotmc:spigot-api:1.8.8-R0.1-SNAPSHOT")
 }
 
 jar {
     exclude 'META-INF/**'
     exclude 'LICENSE'
+    destinationDirectory.set(file("D:/mc/1.8/plugins"))
 }
