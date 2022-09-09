@@ -25,6 +25,9 @@ Settings:
   round_count_down: 5
   #wait x seconds before starting a new round
   round_delay: 2
+  #metrics allows the developer (cobeine) to get specific information about your server
+  #no sensitive information is being taken
+  metrics: true
 
 Messages:
   help_message:
@@ -45,8 +48,6 @@ Messages:
   click_hover: "&aClick me"
   round_count_down: "&7Starting in &e{seconds} second(s)"
   round_started: "&7Round &eStarted!"
-
-
 
 
 Broadcasts:

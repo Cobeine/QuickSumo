@@ -24,16 +24,30 @@
  */
 package me.cobeine.sumo.listeners;
 
-import org.bukkit.Bukkit;
+import me.cobeine.sumo.Core;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
-public class QuitListener implements Listener {
+public class LosingListeners implements Listener {
 
     @EventHandler
-    public void fire(PlayerQuitEvent event) {
-        Bukkit.getServer().broadcastMessage("this shit is crazy my guy");
+    public void onQuit(PlayerQuitEvent event) {
+        Core.getInstance().getGameManager().endRound(event.getPlayer());
+    }
 
+    @EventHandler
+    public void onMove(PlayerMoveEvent event) {
+        if (event.getFrom().getBlockY() == event.getTo().getBlockY())
+            return;
+        Core.getInstance().getGameManager().endRound(event.getPlayer());
+    }
+
+    @EventHandler
+    public void onJoin(PlayerJoinEvent event) {
+        Core.getInstance().getInventorySaver().load(event.getPlayer());
     }
 }

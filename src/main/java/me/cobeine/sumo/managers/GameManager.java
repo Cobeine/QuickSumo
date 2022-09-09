@@ -52,8 +52,6 @@ public interface GameManager {
 
     void startNewRound();
 
-   // void endRound(Callback callback);
-
     void end(Callback callback);
 
     void setGameState(GameState state);
@@ -61,6 +59,23 @@ public interface GameManager {
     GameState getGameState();
 
     boolean canStart();
+
+    boolean notFighting();
+
+    Integer getMinPlayers();
+
+    Integer getMaxPlayers();
+
+    Integer getYDeath();
+
+    Integer getCountdown();
+    Set<Player> getPlayers();
+
+    Round getCurrentRound();
+
+    void setCurrentRound(Round round);
+
+
 
     default void alert(String message, boolean isPublic) {
         if (isPublic)
@@ -82,16 +97,15 @@ public interface GameManager {
     default void sendActionbar(String message) {
         getPlayers().forEach(player -> Actionbar.send(player,message));
     }
+    default void endRound(Player loser) {
+        if (Core.getInstance().getGameManager().notFighting())
+            return;
+        if (!Core.getInstance().getGameManager().getCurrentRound().contains(loser))
+            return;
+        if (loser.getLocation().getY() > Core.getInstance().getGameManager().getYDeath())
+            return;
+        Core.getInstance().getGameManager().getCurrentRound().onEnd(loser);
+    }
 
-    Integer getMinPlayers();
-
-    Integer getMaxPlayers();
-
-    Integer getCountdown();
-    Set<Player> getPlayers();
-
-    Round getCurrentRound();
-
-    void setCurrentRound(Round round);
 
 }

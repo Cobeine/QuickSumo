@@ -60,7 +60,8 @@ public class Round implements IRound {
     }
 
     @Override
-    public void onEnd(Player winner, Player loser) {
+    public void onEnd(Player loser) {
+        Player winner = getOpponent(loser);
         Core.getInstance().getGameManager().alert(
                 Chat.color("Broadcasts.round_win").replace("{winner}", winner.getName())
                         .replace("{loser}", loser.getName()), false);
@@ -71,4 +72,13 @@ public class Round implements IRound {
             }
         }.runTaskLater(Core.getInstance(), Core.getConfigInt("Settings.round_delay"));
     }
+
+    public boolean contains(Player quitter) {
+        return player1.equals(quitter) || player2.equals(quitter);
+    }
+
+    public Player getOpponent(Player quitter) {
+        return player1.equals(quitter) ? player2 : quitter;
+    }
+
 }

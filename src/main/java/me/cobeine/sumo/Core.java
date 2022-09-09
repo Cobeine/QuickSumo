@@ -25,7 +25,8 @@
 package me.cobeine.sumo;
 
 import lombok.Getter;
-import me.cobeine.sumo.listeners.QuitListener;
+import me.cobeine.sumo.listeners.DamageListener;
+import me.cobeine.sumo.listeners.LosingListeners;
 import me.cobeine.sumo.managers.GameManager;
 import me.cobeine.sumo.managers.InventorySaver;
 import me.cobeine.sumo.managers.impl.InventoryManager;
@@ -57,7 +58,8 @@ public class Core extends SpigotPlugin {
         gameManager = new SumoManager();
         quickSumoCommand = new QuickSumoCommand("QuickSumo");
         inventorySaver = new InventoryManager();
-        metrics = new MetricsImpl(this);
+        if (getConfigBoolean("Settings.metrics"))
+            metrics = new MetricsImpl(this);
     }
 
 
@@ -68,7 +70,7 @@ public class Core extends SpigotPlugin {
 
     @Override
     protected void registerListeners() {
-        registerListeners(new QuitListener());
+        registerListeners(new LosingListeners(), new DamageListener());
     }
 
 

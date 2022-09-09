@@ -30,6 +30,8 @@ public class InventoryFile extends YamlFile {
     }
 
     public void load(Player player) {
+        if (!exists())
+            return;
         player.getInventory().setArmorContents((ItemStack[]) getConfig().get("Armor"));
         for (String slot : getConfig().getConfigurationSection("Slots").getKeys(false)) {
             player.getInventory().setItem(Integer.parseInt(slot), getConfig().getItemStack("Slots." + slot));

@@ -31,5 +31,9 @@ public interface IRound {
     void onStart();
 
 
-    void onEnd(Player winner,Player loser);
+    void onEnd(Player loser);
+
+    boolean contains(Player player);
+
+    Player getOpponent(Player player);
 }

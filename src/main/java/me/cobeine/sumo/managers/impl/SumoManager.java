@@ -44,6 +44,7 @@ public class SumoManager implements GameManager {
     private final HashMap<UUID,Location> last_location;
     private GameState gameState;
     private int minPlayers, maxPlayers,countdown;
+    private int y_death; //required Y coordinate to losee
     private Round currentRound;
     public SumoManager() {
         players = new HashSet<>();
@@ -57,6 +58,8 @@ public class SumoManager implements GameManager {
         minPlayers = Core.getConfigInt("Settings.min_players");
         maxPlayers = Core.getConfigInt("Settings.max_players");
         countdown = Core.getConfigInt("Settings.count_down");
+        y_death = LocationsFile.getInstance().getLocation(LocationType.OPPONENT_ONE).getBlockY() -1;
+        //OPPONENT_ONE or OPPONENT_TWO doesn't matter, sumo maps are flat
     }
 
     @Override
@@ -139,6 +142,11 @@ public class SumoManager implements GameManager {
     }
 
     @Override
+    public boolean notFighting() {
+        return !getGameState().equals(GameState.FIGHTING);
+    }
+
+    @Override
     public Integer getMinPlayers() {
         return minPlayers;
     }
@@ -172,5 +180,8 @@ public class SumoManager implements GameManager {
         this.currentRound = round;
     }
 
-
+    @Override
+    public Integer getYDeath() {
+        return y_death;
+    }
 }

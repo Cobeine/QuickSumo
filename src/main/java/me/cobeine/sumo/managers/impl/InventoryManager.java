@@ -1,6 +1,5 @@
 package me.cobeine.sumo.managers.impl;
 
-import me.cobeine.sumo.Core;
 import me.cobeine.sumo.managers.InventorySaver;
 import me.cobeine.sumo.utils.Interfaces.AsyncTask;
 import me.cobeine.sumo.utils.data.impl.InventoryFile;
