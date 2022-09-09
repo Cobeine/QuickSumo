@@ -36,7 +36,7 @@ public class OtherListeners implements Listener {
             return;
         if (!event.getItem().equals(Core.leave_item))
             return;
-        //TODO make leave command & leave method
+        Core.getInstance().getGameManager().leave(event.getPlayer());
     }
 
 }

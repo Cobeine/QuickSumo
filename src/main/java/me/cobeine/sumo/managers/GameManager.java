@@ -48,6 +48,8 @@ public interface GameManager {
 
     void join(Player player);
 
+    void leave(Player player);
+
     void postStart(Callback callback);
 
     void startNewRound();

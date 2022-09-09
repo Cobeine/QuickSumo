@@ -103,7 +103,12 @@ public class SumoManager implements GameManager {
            player.teleport(LocationsFile.getInstance().getLocation(LocationType.ARENA_SPAWN));
        });
     }
-
+    @Override
+    public void leave(Player player){
+        player.getInventory().clear();
+        players.remove(player);
+        restore(player);
+    }
     @Override
     public void postStart(Callback callback) {
         setGameState(GameState.FIGHTING);
@@ -137,6 +142,7 @@ public class SumoManager implements GameManager {
     public void restore(Player player){
         Core.getInstance().getInventorySaver().load(player);
         player.teleport(last_location.get(player.getUniqueId()));
+        last_location.remove(player.getUniqueId());
     }
 
 
