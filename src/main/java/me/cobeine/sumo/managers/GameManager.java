@@ -52,8 +52,9 @@ public interface GameManager {
 
     void startNewRound();
 
-    void end(Callback callback);
+    void end();
 
+    void restore(Player player);
     void setGameState(GameState state);
 
     GameState getGameState();

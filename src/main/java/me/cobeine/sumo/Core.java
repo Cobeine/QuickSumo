@@ -47,8 +47,6 @@ public class Core extends SpigotPlugin {
     private QuickSumoCommand quickSumoCommand;
     private InventorySaver inventorySaver;
 
-
-
     @Override
     protected void init() {
         instance = this;
@@ -74,7 +72,7 @@ public class Core extends SpigotPlugin {
     }
 
 
-    @Override //idk, I have trust issues with java's garbage collector.
+    @Override //IDK, I have trust issues with java's garbage collector.
     protected void shutdown() {
         instance = null;
         configFile = null;

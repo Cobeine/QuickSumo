@@ -29,7 +29,6 @@ import me.cobeine.sumo.Core;
 import net.md_5.bungee.api.ChatColor;
 
 public class Chat {
-
     public static String color(String key) {
         String prefix = (Core.getConfigBoolean("Prefix.enabled") ? Core.getConfigString("Prefix.value") : "");
         return ChatColor.translateAlternateColorCodes('&',

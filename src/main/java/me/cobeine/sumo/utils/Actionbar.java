@@ -30,7 +30,7 @@ import org.bukkit.entity.Player;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 //Class created by ConnorLinfoot, pretty old but it works
-public class Actionbar {
+public final class Actionbar {
     public static void send(Player player, String message) {
         String nmsver;
         boolean useOldMethods = false;

@@ -33,9 +33,11 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 public class Round implements IRound {
     final Player player1,player2; //will probably replace them with array of players instead(low chance, but possible)
+    final boolean final_round;
     public Round(Player player1, Player player2) {
         this.player1 = player1;
         this.player2 = player2;
+        this.final_round = Core.getInstance().getGameManager().getPlayers().size() == 2;
     }
     @Override
     public void onStart() {
@@ -66,6 +68,12 @@ public class Round implements IRound {
                 Chat.color("Broadcasts.round_win").replace("{winner}", winner.getName())
                         .replace("{loser}", loser.getName()), false);
         Core.getInstance().getGameManager().getPlayers().remove(loser);
+        if (final_round){
+            Core.getInstance().getGameManager().alert(Chat.color("Broadcasts.tournament_win")
+                    .replace("{player}",winner.getName()),false);
+            Core.getInstance().getGameManager().end();
+            return;
+        }
         new BukkitRunnable() {
             public void run() {
                 Core.getInstance().getGameManager().startNewRound();

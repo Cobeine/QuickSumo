@@ -33,6 +33,7 @@ import me.cobeine.sumo.utils.Chat;
 import me.cobeine.sumo.utils.enums.GameState;
 import me.cobeine.sumo.utils.enums.LocationType;
 import me.cobeine.sumo.utils.rounds.Round;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -44,7 +45,7 @@ public class SumoManager implements GameManager {
     private final HashMap<UUID,Location> last_location;
     private GameState gameState;
     private int minPlayers, maxPlayers,countdown;
-    private int y_death; //required Y coordinate to losee
+    private int y_death; //required Y coordinate to lose
     private Round currentRound;
     public SumoManager() {
         players = new HashSet<>();
@@ -123,9 +124,21 @@ public class SumoManager implements GameManager {
     }
 
     @Override
-    public void end(Callback callback) {
-
+    public void end() {
+        for (UUID uuid : last_location.keySet()) {
+            Player player = Bukkit.getPlayer(uuid);
+            if (player == null)
+                return;
+            restore(player);
+        }
+        last_location.clear();
     }
+    @Override
+    public void restore(Player player){
+        Core.getInstance().getInventorySaver().load(player);
+        player.teleport(last_location.get(player.getUniqueId()));
+    }
+
 
     @Override
     public GameState getGameState() {
