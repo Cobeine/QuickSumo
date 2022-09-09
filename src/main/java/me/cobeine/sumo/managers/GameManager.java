@@ -24,24 +24,35 @@
  */
 package me.cobeine.sumo.managers;
 
+import me.cobeine.sumo.Core;
+import me.cobeine.sumo.utils.Actionbar;
 import me.cobeine.sumo.utils.Interfaces.Callback;
+import me.cobeine.sumo.utils.enums.Chat;
 import me.cobeine.sumo.utils.enums.GameState;
+import me.cobeine.sumo.utils.rounds.Round;
+import net.md_5.bungee.api.ChatColor;
+import net.md_5.bungee.api.chat.ClickEvent;
+import net.md_5.bungee.api.chat.HoverEvent;
+import net.md_5.bungee.api.chat.TextComponent;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+
+import java.util.Set;
 
 public interface GameManager {
 
     void setup();
 
-    void begin();
+    void begin(Player player);
     void preStart(Callback callback);
 
     void join(Player player);
 
     void postStart(Callback callback);
 
-    void startNewRound(Callback callback);
+    void startNewRound();
 
-    void endRound(Callback callback);
+   // void endRound(Callback callback);
 
     void end(Callback callback);
 
@@ -50,4 +61,37 @@ public interface GameManager {
     GameState getGameState();
 
     boolean canStart();
+
+    default void alert(String message, boolean isPublic) {
+        if (isPublic)
+            Bukkit.getServer().broadcastMessage(message);
+        else getPlayers().forEach(player -> player.sendMessage(message));
+    }
+
+    default void broadcastStart(Player player) {
+        String broadcast = Chat.coloredList(("Broadcasts.tournament_started"))
+                .replace("{player}", player.getName());
+        TextComponent component = new TextComponent(broadcast);
+        component.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/sumo join"));
+        component.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT,TextComponent.fromLegacyText(
+                ChatColor.translateAlternateColorCodes('&',Core.getConfigString("Messages.click_hover"))
+        )));
+        Bukkit.getServer().spigot().broadcast(component);
+    }
+
+    default void sendActionbar(String message) {
+        getPlayers().forEach(player -> Actionbar.send(player,message));
+    }
+
+    Integer getMinPlayers();
+
+    Integer getMaxPlayers();
+
+    Integer getCountdown();
+    Set<Player> getPlayers();
+
+    Round getCurrentRound();
+
+    void setCurrentRound(Round round);
+
 }

@@ -3,7 +3,7 @@
 
 Prefix:
   enabled: true
-  value: "&8│ &e&lSUMO &8▶&f "
+  value: "&8▎ &e&lSUMO &8▶&f "
 
 #Command permissions
 Permissions:
@@ -13,6 +13,18 @@ Permissions:
 #This is used to save and load players inventory before entering the tournament and after
 Inventory_Saver:
   enabled: true
+
+Settings:
+  #minimum amount of players to start (can't be less than two)
+  min_players: 2
+  #you can use -1 value for "max_players" to make it unlimited
+  max_players: 12
+  #start the tournament after x second(s)
+  count_down: 30
+  #start a round after x second(s)
+  round_count_down: 5
+  #wait x seconds before starting a new round
+  round_delay: 2
 
 Messages:
   help_message:
@@ -25,10 +37,28 @@ Messages:
   location_set: "&7Location &e<loc> &7has been set to your location"
   invalid_location: "&cInvalid location type!"
   modify_location_failed: "&cYou can't modify locations while the tournament is running"
-  start_failed: "&cFailed to start sumo tournament, one or more setting is not set."
-  tournament_already_started: "&cTournament is already in use"
+  start_failed: "&cFailed to start sumo tournament, one or more setting is not set"
+  tournament_already_started: "&cTournament already started"
+  starting_in: "&7Starting tournament in &e{seconds} second(s)"
+  no_tournament: "&cThere is no tournament running"
+  invalid_min_players: "&cFailed to start sumo tournament, incorrect &emin_players &cvalue"
+  click_hover: "&aClick me"
+  round_count_down: "&7Starting in &e{seconds} second(s)"
+  round_started: "&7Round &eStarted!"
+
+
+
+
+Broadcasts:
   tournament_started:
     - "&e{player} &7has started a &e&lSUMO Tournament"
     - "Type &e/Sumo join &7or &a[CLICK ME]"
+  sumo_join: "&e{player} &7has joined"
+  round_start: "&7Round &e#{roundNumber}: &e{player1} &7VS &e{player2}"
+  tournament_start: "&7Tournament has &eStarted!"
+  round_win: "&7Player &e{winner} &7won against &c{loser}"
 
+
+Actionbar:
+  waiting: "&eWaiting for players..."
 

@@ -6,6 +6,6 @@ website: "https://github.com/Cobeine/"
 
 commands:
   QuickSumo:
-    aliases: [qSumo,qs]
+    aliases: [qSumo,qs,sumo]
     permission: QuickSumo.Setup
     description: "Setup command for QuickSumo"

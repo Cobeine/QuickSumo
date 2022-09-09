@@ -72,6 +72,10 @@ public abstract class SpigotPlugin extends JavaPlugin {
     public static boolean getConfigBoolean(String key) {
         return ConfigFile.getInstance().getConfig().getBoolean(key);
     }
+
+    public static int getConfigInt(String key) {
+        return ConfigFile.getInstance().getConfig().getInt(key);
+    }
     public static void log(String info) {
         Bukkit.getServer().getLogger().info(info);
     }

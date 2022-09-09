@@ -33,13 +33,10 @@ import me.cobeine.sumo.utils.enums.LocationType;
 import org.bukkit.entity.Player;
 
 
-public  class SubCommands {
-
-    public SubCommands() {}
+public final class SubCommands {
 
     @ISubCommand(value = "start", permissionKey = "sumo_start")
-    public void startSumo(Player player, String[] args) {
-
+    public void start(Player player, String[] args) {
         if (!Core.getInstance().getGameManager().canStart()) {
             player.sendMessage(Chat.color("Messages.start_failed"));
             return;
@@ -48,7 +45,11 @@ public  class SubCommands {
             player.sendMessage(Chat.color("Messages.tournament_already_started"));
             return;
         }
-        Core.getInstance().getGameManager().begin();
+        if (Core.getInstance().getGameManager().getMinPlayers() < 2) {
+            player.sendMessage(Chat.color("Messages.invalid_min_players"));
+            return;
+        }
+        Core.getInstance().getGameManager().begin(player);
     }
     @ISubCommand(value = "setLocation", permissionKey = "sumo_setup")
     public void setLocation(Player player, String[] args) {
@@ -67,6 +68,17 @@ public  class SubCommands {
 
     @ISubCommand(value = "join", permissionKey = "")
     public void join(Player player, String[] args) {
+        switch (Core.getInstance().getGameManager().getGameState()){
+            case IDLE:
+                player.sendMessage(Chat.color("Messages.no_tournament"));
+                break;
+            case FIGHTING:
+                player.sendMessage(Chat.color("Messages.tournament_already_started"));
+                break;
+            default:
+                Core.getInstance().getGameManager().join(player);
+                break;
+        }
 
     }
     @ISubCommand(value = "reload", permissionKey = "sumo_setup")
