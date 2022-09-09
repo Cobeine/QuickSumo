@@ -25,25 +25,26 @@
 package me.cobeine.sumo.commands.impl;
 
 
-import me.cobeine.sumo.commands.ICommand;
+import me.cobeine.sumo.commands.Command;
 import me.cobeine.sumo.utils.enums.Chat;
 import org.bukkit.entity.Player;
 
-public class QuickSumoCommand implements ICommand {
-    final SubCommands subCommands;
-    public QuickSumoCommand() {
-        subCommands = new SubCommands();
+public class QuickSumoCommand extends Command{
+    final SubCommands subCommands = new SubCommands();
+    public QuickSumoCommand(String name) {
+        super(name, new TabComplete());
     }
     @Override
     public void execute(Player player, String subCommand, String[] args) {
         if (subCommand == null || subCommand.equalsIgnoreCase("help")) {
-            player.sendMessage(Chat.color("Messages.help_message"));
+            player.sendMessage(Chat.coloredList("Messages.help_message"));
             return;
         }
         if (!executeSubCommand(subCommands, subCommand,player,args))
             player.sendMessage(Chat.color("Messages.invalid_args"));
     }
 
-
-
+    public SubCommands getSubCommands() {
+        return subCommands;
+    }
 }

@@ -25,6 +25,7 @@
 package me.cobeine.sumo.commands;
 
 import me.cobeine.sumo.Core;
+import me.cobeine.sumo.commands.impl.SubCommands;
 import me.cobeine.sumo.utils.enums.Chat;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -32,7 +33,9 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public interface ICommand extends CommandExecutor {
 
@@ -62,23 +65,29 @@ public interface ICommand extends CommandExecutor {
     default boolean executeSubCommand(Object clazz, String subCommand, Player executor,String[] args) {
         for (final Method method : clazz.getClass().getDeclaredMethods())
 
-
             if (method.isAnnotationPresent(ISubCommand.class)) {
 
                 ISubCommand annotation = method.getAnnotation(ISubCommand.class);
                 String targetedSub = annotation.value();
-
-                if (targetedSub.equalsIgnoreCase(subCommand))
-                    if (executor.hasPermission(Core.getConfigString(annotation.permissionTag())))
-                         try {method.invoke(clazz, executor, args);return true;} catch (Exception ignored) {}
-                    else {
+                if (targetedSub.equalsIgnoreCase(subCommand)){
+                    String permission = Core.getConfigString("Permissions." + annotation.permissionKey());
+                    if (!executor.hasPermission(permission)){
                         executor.sendMessage(Chat.color("Messages.no_permission"));
                         return true;
                     }
-
-
+                    try {method.invoke(clazz, executor, args);return true;} catch (Exception ignored) {ignored.printStackTrace();}
+                }
             }
         return false;
+    }
+
+    static List<String> getSubCommands(Object clazz) {
+        List<String> names = new ArrayList<>();
+        for (final Method method : clazz.getClass().getDeclaredMethods()){
+            if (method.isAnnotationPresent(ISubCommand.class))
+                names.add(method.getName());
+        }
+        return names;
     }
 
     default String[] cleanArgs(String[] args) {

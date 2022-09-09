@@ -41,21 +41,25 @@ public class Core extends SpigotPlugin {
     private GameManager gameManager;
     private MetricsImpl metrics;
     private YamlFile configFile, locationsFile;
+    private QuickSumoCommand quickSumoCommand;
 
 
 
     @Override
     protected void init() {
         instance = this;
+        createDataFolder();
         configFile = new ConfigFile();
         locationsFile = new LocationsFile();
         gameManager = new SumoManager();
+        quickSumoCommand = new QuickSumoCommand("QuickSumo");
         metrics = new MetricsImpl(this);
     }
 
+
     @Override
     protected void registerCommands() {
-        registerCommand("QuickSumo",new QuickSumoCommand());
+        registerCommand(quickSumoCommand);
     }
 
     @Override

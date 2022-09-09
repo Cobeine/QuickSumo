@@ -32,38 +32,47 @@ import me.cobeine.sumo.utils.enums.GameState;
 import me.cobeine.sumo.utils.enums.LocationType;
 import org.bukkit.entity.Player;
 
+
 public  class SubCommands {
 
-    public SubCommands() {
-    }
-    @ISubCommand(value = "start", permissionTag = "sumo_start")
+    public SubCommands() {}
+
+    @ISubCommand(value = "start", permissionKey = "sumo_start")
     public void startSumo(Player player, String[] args) {
-        if (!Core.getInstance().getGameManager().canStart()){
+
+        if (!Core.getInstance().getGameManager().canStart()) {
             player.sendMessage(Chat.color("Messages.start_failed"));
             return;
         }
-        if (!Core.getInstance().getGameManager().getGameState().equals(GameState.IDLE)){
+        if (!Core.getInstance().getGameManager().getGameState().equals(GameState.IDLE)) {
             player.sendMessage(Chat.color("Messages.tournament_already_started"));
             return;
         }
         Core.getInstance().getGameManager().begin();
     }
-    @ISubCommand(value = "setLocation", permissionTag = "sumo_setup")
+    @ISubCommand(value = "setLocation", permissionKey = "sumo_setup")
     public void setLocation(Player player, String[] args) {
-        if (!Core.getInstance().getGameManager().getGameState().equals(GameState.IDLE)){
+        if (!Core.getInstance().getGameManager().getGameState().equals(GameState.IDLE)) {
             player.sendMessage(Chat.color("Messages.modify_location_failed"));
             return;
         }
-      try{
-          LocationType type = LocationType.valueOf(args[0].toUpperCase());
-          LocationsFile.getInstance().setLocation(type, player.getLocation());
-          player.sendMessage(Chat.color("location_set").replace("<loc>",type.toString().toLowerCase()));
-      }catch (Exception e){
-          player.sendMessage(Chat.color("invalid_location"));
-      }
+        LocationType type = LocationType.get(args[0].toUpperCase());
+        if (type == null) {
+            player.sendMessage(Chat.color("Messages.invalid_location"));
+            return;
+        }
+        LocationsFile.getInstance().setLocation(type, player.getLocation());
+        player.sendMessage(Chat.color("Messages.location_set").replace("<loc>", type.toString().toLowerCase()));
     }
-    @ISubCommand(value = "reload", permissionTag = "sumo_setup")
+
+    @ISubCommand(value = "join", permissionKey = "")
+    public void join(Player player, String[] args) {
+
+    }
+    @ISubCommand(value = "reload", permissionKey = "sumo_setup")
     public void reload(Player player, String[] args) {
 
     }
+
+
 }

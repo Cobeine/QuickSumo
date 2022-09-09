@@ -22,16 +22,29 @@
  * SOFTWARE. YOU ARE NOT ALLOWED TO RE-DISTRIBUTE AND/OR REPUBLISH. YOU ARE NOT ALLOWED TO FORK
  * UNLESS GIVEN CREDIT TO THE ORIGINAL AUTHOR (COBEINE)
  */
-package me.cobeine.sumo.commands;
+package me.cobeine.sumo.commands.impl;
 
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+import me.cobeine.sumo.Core;
+import me.cobeine.sumo.commands.ICommand;
+import me.cobeine.sumo.utils.enums.LocationType;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandSender;
+import org.bukkit.command.TabCompleter;
 
-@Retention(RetentionPolicy.RUNTIME)
-@Target({ElementType.METHOD, ElementType.TYPE, ElementType.ANNOTATION_TYPE})
-public @interface ISubCommand {
-    String value();
-    String permissionKey();
+import java.util.List;
+import java.util.stream.Collectors;
+
+public class TabComplete implements TabCompleter {
+    @Override
+    public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
+        if (args.length == 1){
+            return ICommand.getSubCommands(Core.getInstance().getQuickSumoCommand().getSubCommands())
+                    .stream().filter(entry -> entry.startsWith(args[0])).collect(Collectors.toList());
+        }
+        if (args.length == 2 && args[0].equalsIgnoreCase("setLocation")) {
+            return LocationType.stringValues().stream().filter(entry -> entry.startsWith(args[1]))
+                    .collect(Collectors.toList());
+        }
+        return null;
+    }
 }

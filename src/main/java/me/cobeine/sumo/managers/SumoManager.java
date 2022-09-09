@@ -42,7 +42,7 @@ public class SumoManager implements GameManager{
 
     @Override
     public void setup() {
-
+        setGameState(GameState.IDLE);
     }
 
     @Override
