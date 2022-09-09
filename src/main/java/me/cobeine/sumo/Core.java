@@ -25,7 +25,7 @@
 package me.cobeine.sumo;
 
 import lombok.Getter;
-import me.cobeine.sumo.listeners.DamageListener;
+import me.cobeine.sumo.listeners.OtherListeners;
 import me.cobeine.sumo.listeners.LosingListeners;
 import me.cobeine.sumo.managers.GameManager;
 import me.cobeine.sumo.managers.InventorySaver;
@@ -70,7 +70,7 @@ public class Core extends SpigotPlugin {
 
     @Override
     protected void registerListeners() {
-        registerListeners(new LosingListeners(), new DamageListener());
+        registerListeners(new LosingListeners(), new OtherListeners());
     }
 
 

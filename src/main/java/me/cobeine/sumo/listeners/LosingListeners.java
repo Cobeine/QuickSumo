@@ -25,7 +25,6 @@
 package me.cobeine.sumo.listeners;
 
 import me.cobeine.sumo.Core;
-import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;

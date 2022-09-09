@@ -27,12 +27,18 @@ import me.cobeine.sumo.Core;
 import me.cobeine.sumo.commands.Command;
 import me.cobeine.sumo.utils.data.impl.ConfigFile;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.Material;
 import org.bukkit.event.Listener;
+import org.bukkit.inventory.ItemFlag;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
 
 public abstract class SpigotPlugin extends JavaPlugin {
+    public static final ItemStack leave_item = leaveItem();
     public void onEnable() {
         log(
                 "Starting " + getDescription().getName() +
@@ -65,6 +71,15 @@ public abstract class SpigotPlugin extends JavaPlugin {
     }
 
     protected abstract void shutdown();
+
+    static ItemStack leaveItem() {
+        ItemStack stack = new ItemStack(Material.BARRIER);
+        ItemMeta meta = stack.getItemMeta();
+        meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&cLeave"));
+        meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+        stack.setItemMeta(meta);
+        return stack;
+    }
 
     public static String getConfigString(String key) {
         return ConfigFile.getInstance().getConfig().getString(key);

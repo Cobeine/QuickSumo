@@ -33,6 +33,7 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 //https://github.com/Bastian/bStats-Metrics/blob/single-file/bukkit/Metrics.java
 //https://bstats.org/
+@SuppressWarnings("all")
 public class Metrics {
 
     private final Plugin plugin;
