@@ -43,13 +43,13 @@ public abstract class YamlFile {
         this.path = path;
         this.name = name;
         this.file = new File(path, name + ".yml");
-        createNew();
     }
 
     public void createNew() {
         try {
             if (file.createNewFile()) {
                 Bukkit.getLogger().info("File '" + name + ".yml' has been created");
+                cfg = YamlConfiguration.loadConfiguration(file);
                 setDefaults();
             }
 

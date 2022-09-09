@@ -32,6 +32,7 @@ public class ConfigFile extends YamlFile {
     public ConfigFile() {
         super("config", Core.getInstance().getDataFolder().getPath());
         instance = this;
+        createNew();
     }
 
     @Override

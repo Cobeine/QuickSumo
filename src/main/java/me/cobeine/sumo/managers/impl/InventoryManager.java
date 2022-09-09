@@ -11,7 +11,7 @@ public class InventoryManager implements InventorySaver {
 
     @Override
     public void save(Player player) {
-        AsyncTask.run(() -> new InventoryFile(player));
+        AsyncTask.run(() -> new InventoryFile(player).createNew());
     }
 
     @Override

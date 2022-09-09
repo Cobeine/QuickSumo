@@ -16,7 +16,8 @@ public class InventoryFile extends YamlFile {
 
     @Override
     public void setDefaults() {
-        getConfig().set("Armor", player.getInventory().getArmorContents());
+        ItemStack[] armor = player.getInventory().getArmorContents();
+         getConfig().set("Armor", armor.length == 0 ? new ItemStack[]{} : armor);
         for (int i = 0; i < 35; i++) {
             ItemStack t = player.getInventory().getItem(i);
             if (t == null || t.getType().equals(Material.AIR))

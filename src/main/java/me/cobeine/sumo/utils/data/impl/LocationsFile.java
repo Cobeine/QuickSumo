@@ -35,6 +35,8 @@ public class LocationsFile extends YamlFile {
     public LocationsFile() {
         super("locations", Core.getInstance().getDataFolder().getPath());
         instance = this;
+        createNew();
+
     }
 
     @Override

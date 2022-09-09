@@ -93,6 +93,7 @@ public class SumoManager implements GameManager {
     public void join(Player player) {
        AsyncTask.run(()->{
            players.add(player);
+           Core.getInstance().getInventorySaver().save(player);
            alert(Chat.color("Broadcasts.sumo_join").replace("{player}",player.getName()),false);
            last_location.put(player.getUniqueId(), player.getLocation());
            player.teleport(LocationsFile.getInstance().getLocation(LocationType.ARENA_SPAWN));
