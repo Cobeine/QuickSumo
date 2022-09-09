@@ -25,7 +25,6 @@
 package me.cobeine.sumo.commands;
 
 import me.cobeine.sumo.Core;
-import me.cobeine.sumo.commands.impl.SubCommands;
 import me.cobeine.sumo.utils.enums.Chat;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -75,7 +74,7 @@ public interface ICommand extends CommandExecutor {
                         executor.sendMessage(Chat.color("Messages.no_permission"));
                         return true;
                     }
-                    try {method.invoke(clazz, executor, args);return true;} catch (Exception ignored) {ignored.printStackTrace();}
+                    try {method.invoke(clazz, executor, args);return true;} catch (Exception e) {e.printStackTrace();}
                 }
             }
         return false;

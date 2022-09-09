@@ -25,5 +25,5 @@
 package me.cobeine.sumo.utils.enums;
 
 public enum GameState {
-    IDLE,STARTING,FIGHTING;
+    IDLE,STARTING,FIGHTING
 }

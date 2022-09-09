@@ -32,10 +32,10 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
-
+@SuppressWarnings("all")
 public abstract class YamlFile {
-    public String path;
-    public String name;
+    public final String path;
+    public final String name;
     private final File file;
     private YamlConfiguration cfg;
 
@@ -79,6 +79,7 @@ public abstract class YamlFile {
         return file.exists();
     }
 
+    @SuppressWarnings("ResultOfMethodCallIgnored")
     public void delete() {
         file.delete();
         cfg = null;

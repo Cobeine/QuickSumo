@@ -27,10 +27,8 @@ package me.cobeine.sumo.utils.metrics;
 import me.cobeine.sumo.Core;
 
 public class MetricsImpl {
-    private final Metrics metrics;
     final int pluginID = 16326;
-
     public MetricsImpl(Core core) {
-        this.metrics = new Metrics(core,pluginID);
+      new Metrics(core, pluginID);
     }
 }

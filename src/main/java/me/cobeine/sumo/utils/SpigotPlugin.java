@@ -19,8 +19,7 @@
  * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE. YOU ARE NOT ALLOWED TO RE-DISTRIBUTE AND/OR REPUBLISH. YOU ARE NOT ALLOWED TO FORK
- * UNLESS GIVEN CREDIT TO THE ORIGINAL AUTHOR (COBEINE)
+ * SOFTWARE. YOU ARE NOT ALLOWED TO RE-DISTRIBUTE AND/OR REPUBLISH.
  */
 package me.cobeine.sumo.utils;
 
@@ -79,6 +78,7 @@ public abstract class SpigotPlugin extends JavaPlugin {
     public static void log(String info) {
         Bukkit.getServer().getLogger().info(info);
     }
+    @SuppressWarnings("ResultOfMethodCallIgnored")
     public void createDataFolder() {
         Core.getInstance().getDataFolder().mkdirs();
     }
