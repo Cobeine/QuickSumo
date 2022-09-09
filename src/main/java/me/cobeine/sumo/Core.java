@@ -86,7 +86,7 @@ public class Core extends SpigotPlugin {
         return instance;
     }
 
-    public InventorySaver getInventorySaver() {
-        return inventorySaver;
+    public void setConfigFile(YamlFile configFile) {
+        this.configFile = configFile;
     }
 }

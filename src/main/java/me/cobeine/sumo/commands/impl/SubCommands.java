@@ -26,6 +26,7 @@ package me.cobeine.sumo.commands.impl;
 
 import me.cobeine.sumo.Core;
 import me.cobeine.sumo.commands.ISubCommand;
+import me.cobeine.sumo.utils.data.impl.ConfigFile;
 import me.cobeine.sumo.utils.data.impl.LocationsFile;
 import me.cobeine.sumo.utils.Chat;
 import me.cobeine.sumo.utils.enums.GameState;
@@ -83,7 +84,8 @@ public final class SubCommands {
     }
     @ISubCommand(value = "reload", permissionKey = "sumo_setup")
     public void reload(Player player, String[] args) {
-
+        Core.getInstance().setConfigFile(new ConfigFile());
+        player.sendMessage(Chat.color("Messages.configuration_reloaded"));
     }
 
 
