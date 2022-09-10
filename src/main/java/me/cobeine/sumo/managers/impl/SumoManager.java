@@ -36,7 +36,6 @@ import me.cobeine.sumo.utils.enums.LocationType;
 import me.cobeine.sumo.utils.rounds.Round;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
-import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
@@ -139,13 +138,13 @@ public class SumoManager implements GameManager {
                 return;
             restore(player);
         }
-        playerCaches.clear();
     }
     @Override
     public void restore(Player player){
         Core.getInstance().getInventorySaver().load(player);
         PlayerCache cache = getPlayerCache(player);
         cache.restore(player);
+        getCache().removeIf(e -> e.getUuid().equals(player.getUniqueId()));
     }
 
 
