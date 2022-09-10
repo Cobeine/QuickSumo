@@ -107,12 +107,13 @@ public interface GameManager {
     default void sendActionbar(String message) {
         getPlayers().forEach(player -> Actionbar.send(player,message));
     }
-    default void endRound(Player loser) {
+    default void endRound(Player loser,boolean quit) {
         if (Core.getInstance().getGameManager().notFighting())
             return;
         if (!Core.getInstance().getGameManager().getCurrentRound().contains(loser))
             return;
-        if (loser.getLocation().getY() > Core.getInstance().getGameManager().getYDeath())
+        //if player y is not less than y death or player did not quit
+        if ((loser.getLocation().getY() > Core.getInstance().getGameManager().getYDeath()) || !quit)
             return;
         Core.getInstance().getGameManager().getCurrentRound().onEnd(loser);
     }

@@ -35,14 +35,14 @@ public class LosingListeners implements Listener {
 
     @EventHandler
     public void onQuit(PlayerQuitEvent event) {
-        Core.getInstance().getGameManager().endRound(event.getPlayer());
+        Core.getInstance().getGameManager().endRound(event.getPlayer(),true);
     }
 
     @EventHandler
     public void onMove(PlayerMoveEvent event) {
         if (event.getFrom().getBlockY() == event.getTo().getBlockY())
             return;
-        Core.getInstance().getGameManager().endRound(event.getPlayer());
+        Core.getInstance().getGameManager().endRound(event.getPlayer(),false);
     }
 
     @EventHandler

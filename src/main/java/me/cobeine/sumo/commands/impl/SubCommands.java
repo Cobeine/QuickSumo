@@ -80,10 +80,19 @@ public final class SubCommands {
                 Core.getInstance().getGameManager().join(player);
                 break;
         }
+    }
 
+    @ISubCommand(value = "leave", permissionKey = "")
+    public void leave(Player player, String[] args) {
+        if (Core.getInstance().getGameManager().getGameState().equals(GameState.IDLE)) {
+            player.sendMessage(Chat.color("Messages.no_tournament"));
+            return;
+        }
+        Core.getInstance().getGameManager().leave(player);
     }
     @ISubCommand(value = "reload", permissionKey = "sumo_setup")
     public void reload(Player player, String[] args) {
+
         Core.getInstance().setConfigFile(new ConfigFile());
         player.sendMessage(Chat.color("Messages.configuration_reloaded"));
     }

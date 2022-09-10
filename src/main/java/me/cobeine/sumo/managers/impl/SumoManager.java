@@ -109,6 +109,7 @@ public class SumoManager implements GameManager {
     public void leave(Player player){
         player.getInventory().clear();
         players.remove(player);
+        endRound(player,true);
         restore(player);
     }
     @Override
@@ -124,7 +125,7 @@ public class SumoManager implements GameManager {
             List<Player> arrayOfPlayers = new ArrayList<>(players);
             Collections.shuffle(arrayOfPlayers);
             Player player1 = arrayOfPlayers.get(0), player2 = arrayOfPlayers.get(1);
-            this.currentRound = new Round(player1, player2);
+            setCurrentRound(new Round(player1, player2));
             currentRound.onStart();
         });
 
