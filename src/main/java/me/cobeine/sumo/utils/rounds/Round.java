@@ -31,7 +31,7 @@ import me.cobeine.sumo.utils.enums.LocationType;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
-public class Round implements IRound {
+public class Round {
     final Player player1,player2; //will probably replace them with array of players instead(low chance, but possible)
     final boolean final_round;
     public Round(Player player1, Player player2) {
@@ -39,7 +39,6 @@ public class Round implements IRound {
         this.player2 = player2;
         this.final_round = Core.getInstance().getGameManager().getPlayers().size() == 2;
     }
-    @Override
     public void onStart() {
         player1.teleport(LocationsFile.getInstance().getLocation(LocationType.OPPONENT_ONE));
         player2.teleport(LocationsFile.getInstance().getLocation(LocationType.OPPONENT_TWO));
@@ -61,7 +60,6 @@ public class Round implements IRound {
         }.runTaskTimer(Core.getInstance(), 1, 20);
     }
 
-    @Override
     public void onEnd(Player loser) {
         Player winner = getOpponent(loser);
         Core.getInstance().getGameManager().alert(

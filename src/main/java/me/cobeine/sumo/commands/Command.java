@@ -27,7 +27,7 @@ package me.cobeine.sumo.commands;
 import lombok.Getter;
 import org.bukkit.command.TabCompleter;
 @Getter
-public abstract class Command implements ICommand{
+public abstract class  Command implements ICommand{
     TabCompleter tabCompleter;
     String name;
 
