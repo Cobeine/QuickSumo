@@ -28,6 +28,7 @@ import me.cobeine.sumo.Core;
 import me.cobeine.sumo.utils.Actionbar;
 import me.cobeine.sumo.utils.Interfaces.Callback;
 import me.cobeine.sumo.utils.Chat;
+import me.cobeine.sumo.utils.PlayerCache;
 import me.cobeine.sumo.utils.enums.GameState;
 import me.cobeine.sumo.utils.rounds.Round;
 import net.md_5.bungee.api.ChatColor;
@@ -78,6 +79,7 @@ public interface GameManager {
 
     void setCurrentRound(Round round);
 
+    Set<PlayerCache> getCache();
 
 
     default void alert(String message, boolean isPublic) {
@@ -95,6 +97,11 @@ public interface GameManager {
                 ChatColor.translateAlternateColorCodes('&',Core.getConfigString("Messages.click_hover"))
         )));
         Bukkit.getServer().spigot().broadcast(component);
+    }
+
+    default PlayerCache getPlayerCache(Player player) {
+        return Core.getInstance().getGameManager().getCache().stream().filter(e -> e.getUuid().equals(player.getUniqueId()))
+                .findFirst().orElse(new PlayerCache(player));
     }
 
     default void sendActionbar(String message) {

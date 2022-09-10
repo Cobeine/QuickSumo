@@ -28,12 +28,14 @@ import me.cobeine.sumo.Core;
 import me.cobeine.sumo.managers.GameManager;
 import me.cobeine.sumo.utils.Interfaces.AsyncTask;
 import me.cobeine.sumo.utils.Interfaces.Callback;
+import me.cobeine.sumo.utils.PlayerCache;
 import me.cobeine.sumo.utils.data.impl.LocationsFile;
 import me.cobeine.sumo.utils.Chat;
 import me.cobeine.sumo.utils.enums.GameState;
 import me.cobeine.sumo.utils.enums.LocationType;
 import me.cobeine.sumo.utils.rounds.Round;
 import org.bukkit.Bukkit;
+import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -42,14 +44,14 @@ import java.util.*;
 
 public class SumoManager implements GameManager {
     private final Set<Player> players;
-    private final HashMap<UUID,Location> last_location;
+    private final Set<PlayerCache> playerCaches;
     private GameState gameState;
     private int minPlayers, maxPlayers,countdown;
     private int y_death; //required Y coordinate to lose
     private Round currentRound;
     public SumoManager() {
         players = new HashSet<>();
-        last_location = new HashMap<>();
+        playerCaches = new HashSet<>();
         setup();
     }
 
@@ -99,8 +101,9 @@ public class SumoManager implements GameManager {
            players.add(player);
            Core.getInstance().getInventorySaver().save(player);
            alert(Chat.color("Broadcasts.sumo_join").replace("{player}",player.getName()),false);
-           last_location.put(player.getUniqueId(), player.getLocation());
+           getPlayerCache(player);
            player.teleport(LocationsFile.getInstance().getLocation(LocationType.ARENA_SPAWN));
+           player.setGameMode(GameMode.ADVENTURE);
        });
     }
     @Override
@@ -130,19 +133,19 @@ public class SumoManager implements GameManager {
 
     @Override
     public void end() {
-        for (UUID uuid : last_location.keySet()) {
-            Player player = Bukkit.getPlayer(uuid);
+        for (PlayerCache playerCache : getCache()) {
+            Player player = Bukkit.getPlayer(playerCache.getUuid());
             if (player == null)
                 return;
             restore(player);
         }
-        last_location.clear();
+        playerCaches.clear();
     }
     @Override
     public void restore(Player player){
         Core.getInstance().getInventorySaver().load(player);
-        player.teleport(last_location.get(player.getUniqueId()));
-        last_location.remove(player.getUniqueId());
+        PlayerCache cache = getPlayerCache(player);
+        cache.restore(player);
     }
 
 
@@ -197,6 +200,11 @@ public class SumoManager implements GameManager {
     @Override
     public void setCurrentRound(Round round) {
         this.currentRound = round;
+    }
+
+    @Override
+    public Set<PlayerCache> getCache() {
+        return playerCaches;
     }
 
     @Override
